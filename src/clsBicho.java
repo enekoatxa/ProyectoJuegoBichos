@@ -1,8 +1,3 @@
-import java.awt.MouseInfo;
-
-import com.sun.javafx.scene.paint.GradientUtils.Point;
-
-
 public class clsBicho 
 {
 	private double posX;
