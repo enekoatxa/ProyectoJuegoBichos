@@ -7,10 +7,10 @@ public class clsBonus
 	protected int premio;
 	protected double posX;
 	protected double posY;
-public clsBonus()
-{
-	
-}
+//public clsBonus()
+//{
+//	
+//}
 public clsBonus(int bonus) //Constructor sin parámetros(solo 1 parámetro que utilizaremos para decidir la clase de bonus que será entre los dos que hemos definido. )
 {
 	if(bonus==0)//Si es 0 el bonus será de puntuación.
