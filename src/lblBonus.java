@@ -2,7 +2,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 
-public class lblBonus extends JLabel
+public class lblBonus extends JLabel //Bonus Puntuacion
 {
 	private static final long serialVersionUID = 1L;
 	public static final int BONUS_TAMANYO = 50; 

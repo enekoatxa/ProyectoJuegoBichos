@@ -20,7 +20,7 @@ public class vtPartida extends JFrame
 		//Creación de los dos hilos
 		spawner = new hiloCreador();
 		hiloPosiciones = new hiloCalculadorPosiciones();
-		
+		setSize(400,400);
 	}
 	
 	class hiloCreador implements Runnable
