@@ -19,6 +19,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 	private vtCrear vtCrear;
 	private vtEntrar vtEntrar;
 	private vtPartida vtPartida;
+	private clsUsuario usuario;
 	//main hau probisionala dek
 	private final String COMMAND_BUTTON0 = "COMMAND_BUTTON0";
 	private final String COMMAND_BUTTON = "COMMAND_BUTTON";
@@ -73,6 +74,8 @@ public class vtPrincipal extends JFrame implements ActionListener
 		contentPane.add(btnSartu);
 		btnSartu.addActionListener(this);
 		btnSartu.setActionCommand(COMMAND_BUTTON0);
+		
+		usuario=null;
 	}
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -90,6 +93,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 			
 			vtEntrar=new vtEntrar();
 			vtEntrar.setVisible(true);
+			
 			
 			break;
 		case COMMAND_BUTTON1:
