@@ -2,7 +2,7 @@
 public class clsBonusJuego extends clsBonus
 {
 	private lblBonus grafico;
-	private lblBonusTiempo grafico1;
+	
 	
 	public clsBonusJuego(int bonus)
 	{
@@ -14,7 +14,7 @@ public class clsBonusJuego extends clsBonus
 		}
 		else
 		{
-			grafico1 = new lblBonusTiempo();
+		
 		}
 		
 
@@ -37,12 +37,7 @@ public class clsBonusJuego extends clsBonus
  	public void setGrafico(lblBonus grafico) {
 		this.grafico = grafico;
 	}
-	public lblBonusTiempo getGrafico1() {
-		return grafico1;
-	}
-	public void setGrafico1(lblBonusTiempo grafico1) {
-		this.grafico1 = grafico1;
-	}
+
  	
 	
 }
