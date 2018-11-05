@@ -61,7 +61,8 @@ public class vtPrincipal extends JFrame
 		contentPane.add(imag);
 		imag.setIcon(new ImageIcon("img/E.png"));
 		imag.setIcon(new ImageIcon(".\\src\\E.jpg"));
-	}
+		
+		}
 
 
 }

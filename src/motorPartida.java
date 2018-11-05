@@ -3,14 +3,20 @@ import javax.swing.JPanel;
 
 public class motorPartida 
 {
-	JPanel panel= new JPanel();
-	clsEnemigoJuego  enemigo;
+	JPanel panel;
+	clsEnemigoJuego enemigo;
 	
-	public void creaEnemigo()
+	public motorPartida(JPanel panel)
+	{
+		this.panel=panel;
+	}
+	
+	public clsEnemigoJuego creaEnemigo()
 	{
 		enemigo = new clsEnemigoJuego();
 		panel.add(enemigo.getGrafico());
 		enemigo.getGrafico().repaint();
+		return enemigo;
 	}
 	
 	public void creaBonus()
@@ -26,6 +32,11 @@ public class motorPartida
 	public static double calcularYEnemigo(double tiempo, double dir, double vel)
 	{
 		return Math.sin(dir)*vel*tiempo;
+	}
+	
+	public void calculaPosicionEnemigo(clsEnemigoJuego enemigo)
+	{
+		enemigo.mueve(40);
 	}
 	
 }

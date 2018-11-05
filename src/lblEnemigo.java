@@ -17,7 +17,7 @@ public class lblEnemigo extends JLabel
 	{
 		try
 		{
-			this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo.png" ).toURI().toURL() ) );
+			this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo.jpg" ).toURI().toURL() ) );
 		}
 		catch(Exception e)
 		{
