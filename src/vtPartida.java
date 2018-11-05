@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 
 
-public class ventanaPartida extends JFrame
+public class vtPartida extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
@@ -15,7 +15,7 @@ public class ventanaPartida extends JFrame
 	//ArrayList <clsBonusJuego> bonuses;
 	
 	
-	public ventanaPartida()
+	public vtPartida()
 	{
 		//Creación de los dos hilos
 		spawner = new hiloCreador();
