@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -15,8 +16,8 @@ public class vtCrear extends JFrame implements ActionListener
 	private JPasswordField textField_2;
 	
 	
-	private final String COMMAND_BUTTON0 = "COMMAND_BUTTON0";
-	private final String COMMAND_BUTTON = "COMMAND_BUTTON";
+	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
+	private final String PASAHITZAEZKUTATU = "PASAHITZAEZKUTATU";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
 	
 	public vtCrear() {
@@ -61,16 +62,28 @@ public class vtCrear extends JFrame implements ActionListener
 		getContentPane().add(btnNewButton);
 		
 		JButton btnPassword = new JButton("");
-		btnPassword.setBounds(306, 83, 24, 23);
+		btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
+		btnPassword.setBounds(306, 83, 24, 24);
 		getContentPane().add(btnPassword);
 		btnPassword.addActionListener(this);
-		btnPassword.setActionCommand(COMMAND_BUTTON);
+		btnPassword.setActionCommand(PASAHITZAEZKUTATU);
+//		btnPassword.setIcon(new ImageIcon("img/E.png"));
+//		btnPassword.setIcon(new ImageIcon(".\\src\\Begia.png"));
+//		try
+//		{
+//		btnPassword.setIcon( new ImageIcon( vtCrear.class.getResource( "Imagenes/Begia.png" ).toURI().toURL() ) );
+//		}
+//		catch(Exception e)
+//		{
+//			System.out.println("Error: label de enemigo no encontrado");
+//		}
 		
 		JButton btnPassword1 = new JButton("");
-		btnPassword1.setBounds(337, 83, 24, 23);
+		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
+		btnPassword1.setBounds(337, 83, 24, 24);
 		getContentPane().add(btnPassword1);
 		btnPassword1.addActionListener(this);
-		btnPassword1.setActionCommand(COMMAND_BUTTON0);
+		btnPassword1.setActionCommand(PASAHITZAIKUSI);
 		
 	}
 	public void actionPerformed(ActionEvent e) 
@@ -79,13 +92,13 @@ public class vtCrear extends JFrame implements ActionListener
 		switch(comando)
 		{
 		
-		case COMMAND_BUTTON:
+		case PASAHITZAIKUSI:
 			
 			textField_1.setEchoChar((char) 0); 
 			textField_2.setEchoChar((char) 0); 
 
 			break;
-		case COMMAND_BUTTON0:
+		case PASAHITZAEZKUTATU:
 			
 			textField_1.setEchoChar('*'); 
 			textField_2.setEchoChar('*'); 
