@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,9 +16,24 @@ public class lblEnemigo extends JLabel
 	
 	public lblEnemigo()
 	{
+		Random r = new Random();
+		int a = r.nextInt(5);
 		try
 		{
-			this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo.jpg" ).toURI().toURL() ) );
+			switch(a)
+			{
+			case 0:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo01.png" ).toURI().toURL() ) );
+				break;
+			case 1:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo02.png" ).toURI().toURL() ) );
+				break;
+			case 2:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo03.png" ).toURI().toURL() ) );
+				break;
+			case 3:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo04.png" ).toURI().toURL() ) );
+				break;
+			case 4:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo05.png" ).toURI().toURL() ) );
+				break;
+			}
+			
 		}
 		catch(Exception e)
 		{
@@ -25,6 +41,7 @@ public class lblEnemigo extends JLabel
 		}
 		this.setBounds(0, 0, ENEMIGO_TAMANYO, ENEMIGO_TAMANYO);
 	}
+	
 	public void setGiro(double giro)
 	{
 		this.giro=giro;

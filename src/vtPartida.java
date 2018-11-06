@@ -28,7 +28,7 @@ public class vtPartida extends JFrame
 
 		motor = new motorPartida(panel);
 
-		setSize(400,400);
+		setSize(1920,1080);
 
 	}
 	
@@ -78,6 +78,8 @@ public class vtPartida extends JFrame
 					motor.calculaPosicionEnemigo(e);
 				}
 				
+				borrarEnemigos();
+				
 				try {
 					Thread.sleep(40);
 				} catch (InterruptedException e) {
@@ -100,4 +102,14 @@ public class vtPartida extends JFrame
 		enemigos.remove(e);
 	}
 	
+	public void borrarEnemigos()
+	{
+		for(clsEnemigoJuego e : enemigos)
+		{
+			if(e.posX<-50||e.posX>1970||e.posY<-50||e.posY>1130)
+			{
+				borraEnemigo(e);
+			}
+		}
+	}
 }
