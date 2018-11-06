@@ -13,9 +13,10 @@ public class vtEntrar extends JFrame implements ActionListener
 {
 	private JTextField textField;
 	private JPasswordField textField_1;
+	private JButton btnPassword;
+	private boolean pasahitza;
 	
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
-	private final String PASAHITZAEZKUTATU = "PASAHITZAEZKUTATU";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
 	
 	public vtEntrar() {
@@ -23,6 +24,7 @@ public class vtEntrar extends JFrame implements ActionListener
 		getContentPane().setLayout(null);
 		
 		setSize(387,180);
+		pasahitza=false;
 		
 		JLabel lblUsuario = new JLabel("Erabiltzailea:");
 		lblUsuario.setBounds(10, 28, 97, 14);
@@ -47,19 +49,12 @@ public class vtEntrar extends JFrame implements ActionListener
 		btnNewButton.setBounds(128, 108, 89, 23);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnPassword = new JButton("");
+		btnPassword = new JButton("");
 		btnPassword.setBounds(300, 63, 24, 24);
 		getContentPane().add(btnPassword);
 		btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 		btnPassword.setActionCommand(PASAHITZAIKUSI);
 		btnPassword.addActionListener(this);
-		
-		JButton btnPassword1 = new JButton("");
-		btnPassword1.setBounds(337, 63, 24, 24);
-		getContentPane().add(btnPassword1);
-		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
-		btnPassword1.setActionCommand(PASAHITZAEZKUTATU);
-		btnPassword1.addActionListener(this);
 
 	}
 	public void actionPerformed(ActionEvent e) 
@@ -69,15 +64,24 @@ public class vtEntrar extends JFrame implements ActionListener
 		{
 		
 		case PASAHITZAIKUSI:
+			if(pasahitza)
+			{
+				textField_1.setEchoChar('*'); 
+				pasahitza=false;
+				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
+
+			}
+			else
+			{
+				textField_1.setEchoChar((char) 0); 			
+				pasahitza=true;
+				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
+				
+			}
 			
-			textField_1.setEchoChar((char) 0); 
 
 			break;
-		case PASAHITZAEZKUTATU:
-			
-			textField_1.setEchoChar('*'); 
-
-			break;
+	
 		case COMMAND_BUTTON1:
 			
 		
