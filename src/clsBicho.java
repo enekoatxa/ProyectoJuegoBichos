@@ -4,11 +4,9 @@ import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 public class clsBicho 
 {
-	private double posX;
-	private double posY;
+	protected double posX;
+	protected double posY;
 	private lblBicho label; 
-	// tipo bicho elegitzeko aukera ere hemendikan?
-	
 	
 	public clsBicho(double posX, double posY)
 	{
@@ -43,6 +41,7 @@ public class clsBicho
 		this.label = label;
 	}
 
+	//falta el metodo mueve
 	
 	
 	

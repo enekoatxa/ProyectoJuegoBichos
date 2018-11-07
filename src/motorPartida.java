@@ -1,3 +1,6 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import javax.swing.JPanel;
 
 
@@ -5,6 +8,7 @@ public class motorPartida
 {
 	JPanel panel;
 	clsEnemigoJuego enemigo;
+	
 	
 	public motorPartida(JPanel panel)
 	{
@@ -24,6 +28,8 @@ public class motorPartida
 		
 	}
 	
+	
+	
 	public static double calcularXEnemigo(double tiempo, double dir, double vel)
 	{
 		return Math.cos(dir)*vel*tiempo;
@@ -38,5 +44,6 @@ public class motorPartida
 	{
 		enemigo.mueve(40);
 	}
+	
 	
 }
