@@ -110,6 +110,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 			
 			vtPartida=new vtPartida();
 			vtPartida.setVisible(true);
+			vtPartida.startHilos();
 			
 			break;
 }

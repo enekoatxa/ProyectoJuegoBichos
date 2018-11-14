@@ -8,14 +8,7 @@ public class clsBonusJuego extends clsBonus
 	{
 		super(bonus);
 
-		if(bonus==0)
-		{
-			grafico = new lblBonus();
-		}
-		else
-		{
-		
-		}
+		grafico= new lblBonus(bonus);
 		
 
 	}

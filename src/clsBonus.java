@@ -30,9 +30,9 @@ private void posicion()
 {
 	Random rand = new Random();
 
-	int  n = rand.nextInt(1000)+1;//Suponiendo que la pantalla sea un cuadrado 1000x1000
+	int  n = rand.nextInt(1920)+1;
 	posX=n;
-	int  m = rand.nextInt(1000)+1;//Suponiendo que la pantalla sea un cuadrado 1000x1000
+	int  m = rand.nextInt(1080)+1;
 	posY=m;
 }
 private void bonuspuntuacion()
@@ -40,54 +40,40 @@ private void bonuspuntuacion()
 	Random rand = new Random();
 
 	int  n = rand.nextInt(5)+1;
-	if (n==1)
+			
+	switch(n)
 	{
-		premio=10;
+	case 1:premio=10;
+		break;
+	case 2:premio=25;
+		break;
+	case 3:premio=50;
+		break;
+	case 4:premio=100;
+		break;
+	case 5:premio=200;
+		break;
 	}
-	if (n==2)
-	{
-		premio=25;
-	}
-	if (n==3)
-	{
-		premio=50;
-	}
-	if (n==4)
-	{
-		premio=100;
-	}
-	if (n==5)
-	{
-		premio=200;
-	}
-		
-	
 }
 private void bonustiempo()
 {
 	Random rand = new Random();
 
 	int  n = rand.nextInt(5)+1;
-	if (n==1)
+	switch(n)
 	{
-		premio=5;
+	case 1:premio=5;
+		break;
+	case 2:premio=10;
+		break;
+	case 3:premio=15;
+		break;
+	case 4:premio=20;
+		break;
+	case 5:premio=25;
+		break;
 	}
-	if (n==2)
-	{
-		premio=10;
-	}
-	if (n==3)
-	{
-		premio=15;
-	}
-	if (n==4)
-	{
-		premio=20;
-	}
-	if (n==5)
-	{
-		premio=25;
-	}
+	
 }
 public int getBonus() {
 	return bonus;
