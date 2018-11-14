@@ -1,5 +1,6 @@
 
 import java.awt.MouseInfo;
+
 import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 public class clsBicho 
@@ -42,8 +43,7 @@ public class clsBicho
 	}
 
 	//falta el metodo mueve
-	
-	
+	public void mueve( int Xardatza , int Yardatza) {}
 	
 }
 

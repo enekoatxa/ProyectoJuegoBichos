@@ -118,11 +118,8 @@ public class vtPartida extends JFrame
 	
 	int posXBicho;
 	int posYBicho;
-	clsBichoJuego bicho;
 	
 	//para saber donde se coloca el puntero del bicho en cada momento
-	
-	
 	 public void addEventos(){
 	        addMouseMotionListener(new MouseMotionAdapter(){
 	            @Override
@@ -130,10 +127,10 @@ public class vtPartida extends JFrame
 	      
 	                    posXBicho= evento.getX();
 	                    posYBicho =evento.getY();
+	                 
 	            }
 	         });
-		
-	}
+	        }
 	    
 
 }

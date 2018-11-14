@@ -29,7 +29,6 @@ public class motorPartida
 	}
 	
 	
-	
 	public static double calcularXEnemigo(double tiempo, double dir, double vel)
 	{
 		return Math.cos(dir)*vel*tiempo;
@@ -44,6 +43,7 @@ public class motorPartida
 	{
 		enemigo.mueve(40);
 	}
+	
 	
 	
 }
