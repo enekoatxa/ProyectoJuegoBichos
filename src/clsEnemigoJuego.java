@@ -5,19 +5,25 @@ public class clsEnemigoJuego extends clsEnemigo
 	
 	public clsEnemigoJuego()
 	{
+		super();
 		grafico = new lblEnemigo();
+		this.setPosX(posX);
+		this.setPosY(posY);
+		this.setDireccion(direccion);
 	}
 	
 	@Override
 	public void setPosX(double posX) {
 		super.setPosX(posX);
 		grafico.setLocation( (int)posX, (int)posY );
+		grafico.repaint();
 	}
 
 	@Override
 	public void setPosY(double posY) {
 		super.setPosY(posY);
 		grafico.setLocation( (int)posX, (int)posY );
+		grafico.repaint();
 	}
 
 	@Override

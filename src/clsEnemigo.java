@@ -11,7 +11,7 @@ public class clsEnemigo
 	public clsEnemigo()
 	{
 		Random r = new Random();
-		int lugar= r.nextInt(4);
+		int lugar= r.nextInt(4)+1;
 		
 		switch (lugar)
 		{
@@ -19,29 +19,29 @@ public class clsEnemigo
 			case 1:
 				this.posY=-ENEMIGO_TAMANYO;
 				this.posX=1920*r.nextDouble();
-				this.velocidad=10*r.nextDouble();
-				this.direccion=Math.toRadians(180+180*r.nextDouble());
+				this.velocidad=300;
+				this.direccion=Math.toRadians(45+90*r.nextDouble());
 				break;
 		//Spawn de enemigo por derecha
 			case 2:
 				this.posY=1080*r.nextDouble();
 				this.posX=1920+ENEMIGO_TAMANYO;
-				this.velocidad=10*r.nextDouble();
-				this.direccion=Math.toRadians(90+180*r.nextDouble());
+				this.velocidad=300;
+				this.direccion=Math.toRadians(135+90*r.nextDouble());
 				break;
 		//Spawn de enemigo por abajo
 			case 3:
-				this.posY=180+ENEMIGO_TAMANYO;
-				this.posX=r.nextDouble();
-				this.velocidad=10*r.nextDouble();
-				this.direccion=Math.toRadians(180*r.nextDouble());
+				this.posY=1080+ENEMIGO_TAMANYO;
+				this.posX=1920*r.nextDouble();
+				this.velocidad=300;
+				this.direccion=Math.toRadians(225+90*r.nextDouble());
 				break;
 		//Spawn de enemigo por izquierda	
 			case 4:
 				this.posY=1080*r.nextDouble();
 				this.posX=-ENEMIGO_TAMANYO;
-				this.velocidad=10*r.nextDouble();
-				this.direccion=Math.toRadians(270+180*r.nextDouble());
+				this.velocidad=300;
+				this.direccion=Math.toRadians(90*r.nextDouble());
 				break;
 		}
 		

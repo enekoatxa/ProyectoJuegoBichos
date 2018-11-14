@@ -8,11 +8,14 @@ public class motorPartida
 {
 	JPanel panel;
 	clsEnemigoJuego enemigo;
+	clsBonusJuego bonus;
 	
 	
 	public motorPartida(JPanel panel)
 	{
 		this.panel=panel;
+		panel.setVisible(true);
+		
 	}
 	
 	public clsEnemigoJuego creaEnemigo()
@@ -23,9 +26,20 @@ public class motorPartida
 		return enemigo;
 	}
 	
-	public void creaBonus()
+	public clsBonusJuego creaBonus()
 	{
-		
+		bonus= new clsBonusJuego(0);
+		panel.add(bonus.getGrafico());
+		bonus.getGrafico().repaint();
+		return bonus;
+	}
+	
+	public clsBonusJuego creaBonusTiempo()
+	{
+		bonus= new clsBonusJuego(1);
+		panel.add(bonus.getGrafico());
+		bonus.getGrafico().repaint();
+		return bonus;
 	}
 	
 	
@@ -41,7 +55,14 @@ public class motorPartida
 	
 	public void calculaPosicionEnemigo(clsEnemigoJuego enemigo)
 	{
-		enemigo.mueve(40);
+		enemigo.mueve(25);
+		enemigo.getGrafico().repaint();
+	}
+	
+	public void borraEnemigoPantalla(clsEnemigoJuego e)
+	{
+		panel.remove(e.getGrafico());
+		e.getGrafico().repaint();
 	}
 	
 	

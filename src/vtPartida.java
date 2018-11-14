@@ -2,6 +2,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,12 +11,12 @@ public class vtPartida extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
-	ArrayList<clsEnemigoJuego>enemigos;
+	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
 	
 	hiloCreador spawner=null;
 	hiloCalculadorPosiciones hiloPosiciones=null;
 	boolean partidaSigue=true;
-	JPanel panel = new JPanel();
+	JPanel panel; 
 	
 	
 	//IMPORTANT bi kalse hauen in ber dituzue, bakoitzak beria, labela ta beste klasia juntzatzeizkienak IZENAK: clsBichoJuego, clsBonusJuego
@@ -26,13 +27,25 @@ public class vtPartida extends JFrame
 	public vtPartida()
 	{
 		//Creación de los dos hilos
-		spawner = new hiloCreador();
-		hiloPosiciones = new hiloCalculadorPosiciones();
-
+		panel = new JPanel();
+		panel.setLayout(null);
+		this.add(panel);
 		motor = new motorPartida(panel);
-
 		setSize(1920,1080);
-
+		
+	}
+	
+	
+	public void startHilos()
+	{
+		spawner = new hiloCreador();
+		Thread hiloSpawn = new Thread( spawner);
+		hiloSpawn.start();
+		
+		hiloPosiciones = new hiloCalculadorPosiciones();
+		Thread hiloPosi = new Thread (hiloPosiciones);
+		hiloPosi.start();
+				
 	}
 	
 	class hiloCreador implements Runnable
@@ -49,12 +62,12 @@ public class vtPartida extends JFrame
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
-					motor.creaBonus();
+					//motor.creaBonus();
 					contador=0;
 				}
 				contador++;
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(250);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -81,10 +94,10 @@ public class vtPartida extends JFrame
 					motor.calculaPosicionEnemigo(e);
 				}
 				
-				borrarEnemigos();
+				//borrarEnemigos();
 				
 				try {
-					Thread.sleep(40);
+					Thread.sleep(25);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -103,6 +116,7 @@ public class vtPartida extends JFrame
 	public void borraEnemigo(clsEnemigoJuego e)
 	{
 		enemigos.remove(e);
+		motor.borraEnemigoPantalla(e);
 	}
 	
 	public void borrarEnemigos()
@@ -112,6 +126,7 @@ public class vtPartida extends JFrame
 			if(e.posX<-50||e.posX>1970||e.posY<-50||e.posY>1130)
 			{
 				borraEnemigo(e);
+				motor.borraEnemigoPantalla(e);
 			}
 		}
 	}
