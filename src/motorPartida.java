@@ -42,8 +42,16 @@ public class motorPartida
 		return bonus;
 	}
 	
+	public boolean compararTiempoEnemigo(clsEnemigoJuego enemigo)
+	{
+		long creacion = enemigo.getCreacion();
+		long ahora = System.currentTimeMillis();
+		if(ahora-creacion>1000)
+		return true;
+		return false;
+	}
 	
-	
+		
 	public static double calcularXEnemigo(double tiempo, double dir, double vel)
 	{
 		return Math.cos(dir)*vel*tiempo;

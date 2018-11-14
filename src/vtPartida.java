@@ -67,7 +67,7 @@ public class vtPartida extends JFrame
 				}
 				contador++;
 				try {
-					Thread.sleep(250);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -92,10 +92,16 @@ public class vtPartida extends JFrame
 				for(clsEnemigoJuego e : enemigos)
 				{
 					motor.calculaPosicionEnemigo(e);
+					
+					//meter aqui los choques
+					
+					if(motor.compararTiempoEnemigo(e))
+					{
+						motor.borraEnemigoPantalla(e);
+						enemigos.remove(e);
+					}
 				}
-				
-				//borrarEnemigos();
-				
+						
 				try {
 					Thread.sleep(25);
 				} catch (InterruptedException e) {
@@ -113,6 +119,14 @@ public class vtPartida extends JFrame
 		partidaSigue=false;
 	}
 
+	
+	// programar choques
+	public boolean compararChoques(clsEnemigoJuego enemigo)
+	{
+		return true;
+		
+	}
+	
 	public void borraEnemigo(clsEnemigoJuego e)
 	{
 		enemigos.remove(e);

@@ -2,11 +2,12 @@ import java.util.Random;
 
 public class clsEnemigo 
 {
-	private static final int ENEMIGO_TAMANYO = 50;
+	protected static final int ENEMIGO_TAMANYO = 50;
 	protected double posY;
 	protected double posX;
 	protected double velocidad;
 	protected double direccion;
+	protected long creacion;
 	
 	public clsEnemigo()
 	{
@@ -45,6 +46,7 @@ public class clsEnemigo
 				break;
 		}
 		
+		creacion=System.currentTimeMillis();
 
 	}
 
@@ -80,6 +82,15 @@ public class clsEnemigo
 		this.direccion = direccion;
 	}
 	
+	
+	public long getCreacion() {
+		return creacion;
+	}
+
+	public void setCreacion(long creacion) {
+		this.creacion = creacion;
+	}
+
 	public void mueve( double tiempoDeMovimiento ) {
 		setPosX( posX + motorPartida.calcularXEnemigo(0.04, direccion, velocidad));
 		setPosY( posY + motorPartida.calcularYEnemigo(0.04, direccion, velocidad));
