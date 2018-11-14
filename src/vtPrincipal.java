@@ -43,7 +43,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 	}
 	public vtPrincipal()  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(250, 80, 481, 390);
+		setBounds(250, 80, 900, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,7 +57,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 		btnNewButton_1.addActionListener(this);
 		btnNewButton_1.setActionCommand(COMMAND_BUTTON1);
 		
-		JButton btnNewButton = new JButton("Denbora Onenak");
+		JButton btnNewButton = new JButton("Puntuazio Onenak");
 		btnNewButton.setForeground(new Color(0, 100, 0));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnNewButton.setBounds(94, 207, 293, 36);
@@ -73,11 +73,11 @@ public class vtPrincipal extends JFrame implements ActionListener
 		JLabel imag = new JLabel();
 		imag.setBounds(0, 0, 900, 562);
 		contentPane.add(imag);
-		imag.setIcon(new ImageIcon("img/E.png"));
-		imag.setIcon(new ImageIcon(".\\src\\E.jpg"));
+		imag.setIcon(new ImageIcon("img/Imagenes/E.png"));
+		imag.setIcon(new ImageIcon(".\\src\\Imagenes\\E.jpg"));
 		
 		JButton btnSartu = new JButton("Sartu");
-		btnSartu.setBounds(366, 11, 89, 23);
+		btnSartu.setBounds(750, 11, 89, 23);
 		contentPane.add(btnSartu);
 		btnSartu.addActionListener(this);
 		btnSartu.setActionCommand(COMMAND_BUTTON0);

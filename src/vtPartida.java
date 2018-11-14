@@ -1,3 +1,5 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 
@@ -15,6 +17,7 @@ public class vtPartida extends JFrame
 	hiloCalculadorPosiciones hiloPosiciones=null;
 	boolean partidaSigue=true;
 	JPanel panel; 
+	
 	
 	//IMPORTANT bi kalse hauen in ber dituzue, bakoitzak beria, labela ta beste klasia juntzatzeizkienak IZENAK: clsBichoJuego, clsBonusJuego
 	//clsBichoJuego jugador;
@@ -127,4 +130,25 @@ public class vtPartida extends JFrame
 			}
 		}
 	}
+	
+	int posXBicho;
+	int posYBicho;
+	clsBichoJuego bicho;
+	
+	//para saber donde se coloca el puntero del bicho en cada momento
+	
+	
+	 public void addEventos(){
+	        addMouseMotionListener(new MouseMotionAdapter(){
+	            @Override
+	           public void mouseMoved(MouseEvent evento){
+	      
+	                    posXBicho= evento.getX();
+	                    posYBicho =evento.getY();
+	            }
+	         });
+		
+	}
+	    
+
 }

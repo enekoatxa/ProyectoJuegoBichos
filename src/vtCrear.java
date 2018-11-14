@@ -14,10 +14,12 @@ public class vtCrear extends JFrame implements ActionListener
 	private JTextField textField;
 	private JPasswordField textField_1;
 	private JPasswordField textField_2;
-	
+	private boolean pasahitza;
+	private JButton btnPassword;
+	private JButton btnPassword1;
 	
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
-	private final String PASAHITZAEZKUTATU = "PASAHITZAEZKUTATU";
+	private final String PASAHITZAIKUSI1 = "PASAHITZAIKUSI1";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
 	
 	public vtCrear() {
@@ -26,6 +28,7 @@ public class vtCrear extends JFrame implements ActionListener
 		getContentPane().setLayout(null);
 		
 		setSize(387,222);
+		pasahitza=false;
 			
 		JLabel lblUsuario = new JLabel("Erabiltzailea:");
 		lblUsuario.setBounds(10, 28, 97, 14);
@@ -61,12 +64,19 @@ public class vtCrear extends JFrame implements ActionListener
 		btnNewButton.setBounds(103, 149, 89, 23);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnPassword = new JButton("");
+		btnPassword = new JButton("");
 		btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
-		btnPassword.setBounds(306, 83, 24, 24);
+		btnPassword.setBounds(317, 65, 24, 24);
 		getContentPane().add(btnPassword);
 		btnPassword.addActionListener(this);
-		btnPassword.setActionCommand(PASAHITZAEZKUTATU);
+		btnPassword.setActionCommand(PASAHITZAIKUSI);
+		
+		btnPassword1 = new JButton("");
+		btnPassword1.addActionListener(this);
+		btnPassword1.setActionCommand("PASAHITZAIKUSI1");
+		btnPassword1.setBounds(317, 104, 24, 24);
+		getContentPane().add(btnPassword1);
+		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 //		btnPassword.setIcon(new ImageIcon("img/E.png"));
 //		btnPassword.setIcon(new ImageIcon(".\\src\\Begia.png"));
 //		try
@@ -78,12 +88,7 @@ public class vtCrear extends JFrame implements ActionListener
 //			System.out.println("Error: label de enemigo no encontrado");
 //		}
 		
-		JButton btnPassword1 = new JButton("");
-		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
-		btnPassword1.setBounds(337, 83, 24, 24);
-		getContentPane().add(btnPassword1);
-		btnPassword1.addActionListener(this);
-		btnPassword1.setActionCommand(PASAHITZAIKUSI);
+	
 		
 	}
 	
@@ -94,19 +99,41 @@ public class vtCrear extends JFrame implements ActionListener
 		{
 		
 		case PASAHITZAIKUSI:
-			
-			textField_1.setEchoChar((char) 0); 
-			textField_2.setEchoChar((char) 0); 
+			if(pasahitza)
+			{
+				textField_1.setEchoChar('*'); 
+				pasahitza=false;
+				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 
-			break;
-		case PASAHITZAEZKUTATU:
+			}
+			else
+			{
+				textField_1.setEchoChar((char) 0); 
+				pasahitza=true;
+				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
+				
+			}
 			
-			textField_1.setEchoChar('*'); 
-			textField_2.setEchoChar('*'); 
 
-			break;
-		case COMMAND_BUTTON1:
-			break;
+	
+		case PASAHITZAIKUSI1:
+			if(pasahitza)
+			{
+				textField_2.setEchoChar('*'); 
+				pasahitza=false;
+				btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
+
+			}
+			else
+			{
+				textField_2.setEchoChar((char) 0); 
+				pasahitza=true;
+				btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
+				
+			}
+			
+
+		break;
 		}
 	}
 	
