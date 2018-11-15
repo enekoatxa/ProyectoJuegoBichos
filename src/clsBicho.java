@@ -43,7 +43,11 @@ public class clsBicho
 	}
 
 	//falta el metodo mueve
-	public void mueve( int Xardatza , int Yardatza) {}
+	public void mueve( int Xardatza , int Yardatza) 
+	{
+		
+		
+	}
 	
 }
 
