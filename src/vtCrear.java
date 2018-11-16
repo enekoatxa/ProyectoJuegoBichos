@@ -21,6 +21,7 @@ public class vtCrear extends JFrame implements ActionListener
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
 	private final String PASAHITZAIKUSI1 = "PASAHITZAIKUSI1";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
+	private JLabel lblNewLabel;
 	
 	public vtCrear() {
 		
@@ -77,6 +78,7 @@ public class vtCrear extends JFrame implements ActionListener
 		btnPassword1.setBounds(317, 104, 24, 24);
 		getContentPane().add(btnPassword1);
 		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
+		
 //		btnPassword.setIcon(new ImageIcon("img/E.png"));
 //		btnPassword.setIcon(new ImageIcon(".\\src\\Begia.png"));
 //		try

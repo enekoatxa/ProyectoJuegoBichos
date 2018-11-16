@@ -7,15 +7,9 @@ public class clsBonusJuego extends clsBonus
 	public clsBonusJuego(int bonus)
 	{
 		super(bonus);
-
-		if(bonus==0)
-		{
-			grafico = new lblBonus();
-		}
-		else
-		{
 		
-		}
+			grafico = new lblBonus(bonus);
+		
 		
 
 	}
