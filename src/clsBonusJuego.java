@@ -7,9 +7,14 @@ public class clsBonusJuego extends clsBonus
 	public clsBonusJuego(int bonus)
 	{
 		super(bonus);
+<<<<<<< HEAD
 		
 			grafico = new lblBonus(bonus);
 		
+=======
+
+		grafico= new lblBonus(bonus);
+>>>>>>> 7bfe514e6c90ed959a890d9c2698a7eceb0031bf
 		
 
 	}

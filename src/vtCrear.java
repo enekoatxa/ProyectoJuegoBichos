@@ -93,6 +93,7 @@ public class vtCrear extends JFrame implements ActionListener
 	
 		
 	}
+	
 	public void actionPerformed(ActionEvent e) 
 	{
 		String comando=e.getActionCommand();
@@ -116,7 +117,6 @@ public class vtCrear extends JFrame implements ActionListener
 			}
 			
 
-			break;
 	
 		case PASAHITZAIKUSI1:
 			if(pasahitza)
@@ -135,7 +135,25 @@ public class vtCrear extends JFrame implements ActionListener
 			}
 			
 
-			break;
-}
-}
+		break;
+		}
+	}
+	
+	public clsUsuario crearUsuario()
+	{
+		//hashcode ta haslist falta
+		String nombre = null;
+		String contrasenya = null;
+		
+		nombre=textField.getText();
+		if(textField_1.getText().equals(textField_2.getText()) && textField_1.getText()!="")
+		{
+			contrasenya=textField_1.getText();
+		}
+		
+		clsUsuario nuevo = new clsUsuario(nombre, contrasenya);
+		
+		return nuevo;
+		
+	}
 }

@@ -86,6 +86,14 @@ public class vtEntrar extends JFrame implements ActionListener
 			
 		
 			break;
-}
-}
+		}
+	}
+	
+	public void inicioSesion()
+	{
+		String usuario= textField.getText();
+		String contrasenya = textField_1.getText();
+		
+		//falta leer usuarios de base de datos, comparar e intentar entrar
+	} 
 }

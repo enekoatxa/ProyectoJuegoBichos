@@ -10,27 +10,27 @@ import javax.swing.JLabel;
 public class lblEnemigo extends JLabel
 {
 	private static final long serialVersionUID = 1L;
-	public static final int ENEMIGO_TAMANYO = 50; 
+	public static final int ENEMIGO_TAMANYO = 100; 
 	public static final int ENEMIGO_RADIO= 15;
 	private double giro=0;
 	
 	public lblEnemigo()
 	{
 		Random r = new Random();
-		int a = r.nextInt(5);
+		int a = r.nextInt(5)+1;
 		try
 		{
 			switch(a)
 			{
-			case 0:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo01.png" ).toURI().toURL() ) );
+			case 1:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo01.png" ).toURI().toURL() ) );
 				break;
-			case 1:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo02.png" ).toURI().toURL() ) );
+			case 2:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo02.png" ).toURI().toURL() ) );
 				break;
-			case 2:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo03.png" ).toURI().toURL() ) );
+			case 3:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo03.png" ).toURI().toURL() ) );
 				break;
-			case 3:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo04.png" ).toURI().toURL() ) );
+			case 4:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo04.png" ).toURI().toURL() ) );
 				break;
-			case 4:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo05.png" ).toURI().toURL() ) );
+			case 5:this.setIcon( new ImageIcon( lblEnemigo.class.getResource( "Imagenes/enemigo05.png" ).toURI().toURL() ) );
 				break;
 			}
 			
@@ -56,7 +56,7 @@ public class lblEnemigo extends JLabel
 		g2.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	
 		// Prepara rotación (siguientes operaciones se rotarán)
-        g2.rotate( giro, ENEMIGO_TAMANYO/2, ENEMIGO_TAMANYO/2 ); // getIcon().getIconWidth()/2, getIcon().getIconHeight()/2 );
+        g2.rotate( giro+Math.PI/2, ENEMIGO_TAMANYO/2, ENEMIGO_TAMANYO/2 ); // getIcon().getIconWidth()/2, getIcon().getIconHeight()/2 );
         // Dibujado de la imagen
         g2.drawImage( img, 0, 0, ENEMIGO_TAMANYO, ENEMIGO_TAMANYO, null );
 	}
