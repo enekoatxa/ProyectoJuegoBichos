@@ -89,16 +89,16 @@ public class vtPartida extends JFrame
 			while(partidaSigue)
 			{
 				//Hemen for bat erabili beharko da, enemigo 1 baino gehiago egongo direlako batera (arraylista erabili)
-				for(clsEnemigoJuego e : enemigos)
+				for(int i=0; i<enemigos.size(); i++)
 				{
-					motor.calculaPosicionEnemigo(e);
+					motor.calculaPosicionEnemigo(enemigos.get(i));
 					
 					//meter aqui los choques
 					
-					if(motor.compararTiempoEnemigo(e))
+					if(motor.compararTiempoEnemigo(enemigos.get(i)))
 					{
-						motor.borraEnemigoPantalla(e);
-						enemigos.remove(e);
+						motor.borraEnemigoPantalla(enemigos.get(i));
+						enemigos.remove(enemigos.get(i));
 					}
 				}
 						
