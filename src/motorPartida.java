@@ -52,6 +52,10 @@ public class motorPartida
 		return false;
 	}
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ba7f5166d81fc87fcf77e6cc132a444be4e715f
 	public static double calcularXEnemigo(double tiempo, double dir, double vel)
 	{
 		return Math.cos(dir)*vel*tiempo;

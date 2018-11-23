@@ -8,8 +8,12 @@ public class clsBonusJuego extends clsBonus
 	{
 		super(bonus);
 		grafico = new lblBonus(bonus);
+<<<<<<< HEAD
 		this.setPosX(posX);
 		this.setPosY(posY);
+=======
+
+>>>>>>> 5ba7f5166d81fc87fcf77e6cc132a444be4e715f
 	}
 	@Override
 	public void setPosX(double posX) {
