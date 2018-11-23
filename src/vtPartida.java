@@ -3,8 +3,12 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 
+
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 
 public class vtPartida extends JFrame
@@ -13,6 +17,7 @@ public class vtPartida extends JFrame
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
 	
+	clsBonusJuego bonus;
 	hiloCreador spawner=null;
 	hiloCalculadorPosiciones hiloPosiciones=null;
 	boolean partidaSigue=true;
@@ -29,9 +34,21 @@ public class vtPartida extends JFrame
 		//Creación de los dos hilos
 		panel = new JPanel();
 		panel.setLayout(null);
-		this.add(panel);
+		getContentPane().add(panel);
 		motor = new motorPartida(panel);
 		setSize(1920,1080);
+		
+//		JLabel lblNewLabel = new JLabel("New label");
+//		lblNewLabel.setBounds(341, 38, 46, 14);
+//		panel.add(lblNewLabel);
+//		try
+//		{
+//			lblNewLabel.setIcon( new ImageIcon( vtPartida.class.getResource( "Imagenes/margarita.png" ).toURI().toURL() ) );
+//		}
+//		catch(Exception e)
+//		{
+//			System.out.println("Error: label de bonus no encontrado");
+//		}
 		
 	}
 	
@@ -59,10 +76,14 @@ public class vtPartida extends JFrame
 			
 			while(partidaSigue)
 			{
+				
+				bonus=motor.creaBonus();
+
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
-					//motor.creaBonus();
+//					motor.creaBonus();
+
 					contador=0;
 				}
 				contador++;
@@ -160,6 +181,4 @@ public class vtPartida extends JFrame
 	            }
 	         });
 	        }
-	    
-
 }

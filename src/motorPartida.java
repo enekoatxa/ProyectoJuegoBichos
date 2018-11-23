@@ -28,6 +28,7 @@ public class motorPartida
 	
 	public clsBonusJuego creaBonus()
 	{
+		System.out.println("i");
 		bonus= new clsBonusJuego(0);
 		panel.add(bonus.getGrafico());
 		bonus.getGrafico().repaint();
@@ -51,10 +52,6 @@ public class motorPartida
 		return false;
 	}
 	
-<<<<<<< HEAD
-=======
-		
->>>>>>> 0449f8de7824e8d5a7556cc0629d371e1ddb706d
 	public static double calcularXEnemigo(double tiempo, double dir, double vel)
 	{
 		return Math.cos(dir)*vel*tiempo;

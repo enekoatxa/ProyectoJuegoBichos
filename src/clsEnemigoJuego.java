@@ -10,8 +10,7 @@ public class clsEnemigoJuego extends clsEnemigo
 		this.setPosX(posX);
 		this.setPosY(posY);
 		this.setDireccion(direccion);
-	}
-	
+	}	
 	@Override
 	public void setPosX(double posX) {
 		super.setPosX(posX);
