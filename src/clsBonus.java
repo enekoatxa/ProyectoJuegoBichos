@@ -7,16 +7,12 @@ public class clsBonus
 	protected int premio;
 	protected double posX;
 	protected double posY;
-//public clsBonus()
-//{
-//	
-//}
+
 public clsBonus(int bonus) //Constructor sin parámetros(solo 1 parámetro que utilizaremos para decidir la clase de bonus que será entre los dos que hemos definido. )
 {
-	System.out.println("m");
-	if(bonus==0)//Si es 0 el bonus será de puntuación.
+		if(bonus==0)//Si es 0 el bonus será de puntuación.
 	{
-		System.out.println("a");
+		
 
 		bonuspuntuacion(); //Le da una puntuación aleatoria entre 5 puntuaciones a nuestro bonus.
 		
@@ -31,18 +27,18 @@ public clsBonus(int bonus) //Constructor sin parámetros(solo 1 parámetro que uti
 }
 private void posicion()
 {
-	System.out.println("o");
+
 
 	Random rand = new Random();
 
-//	posX=30;
-//	posY=30;
-	posX=1920*rand.nextDouble();
-	posY=1080*rand.nextDouble();
+	posX=1000;
+	posY=500;
+//	posX=1920*rand.nextDouble();
+//	posY=1080*rand.nextDouble();
 }
 private void bonuspuntuacion()
 {
-	System.out.println("n");
+
 
 	Random rand = new Random();
 

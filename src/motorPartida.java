@@ -9,6 +9,7 @@ public class motorPartida
 	JPanel panel;
 	clsEnemigoJuego enemigo;
 	clsBonusJuego bonus;
+	lblBonus b;
 	
 	
 	public motorPartida(JPanel panel)
@@ -28,7 +29,6 @@ public class motorPartida
 	
 	public clsBonusJuego creaBonus()
 	{
-		System.out.println("i");
 		bonus= new clsBonusJuego(0);
 		panel.add(bonus.getGrafico());
 		bonus.getGrafico().repaint();
@@ -52,6 +52,13 @@ public class motorPartida
 		return false;
 	}
 	
+
+	public void RotarBonus(clsBonusJuego bs)
+	{
+		bs.RotarBonus();
+	}
+
+
 	public static double calcularXEnemigo(double tiempo, double dir, double vel)
 	{
 		return Math.cos(dir)*vel*tiempo;

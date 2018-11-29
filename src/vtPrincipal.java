@@ -2,9 +2,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +25,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 	private vtEntrar vtEntrar;
 	private vtPartida vtPartida;
 	private clsUsuario usuario;
+	private BufferedImage image;
 	//main hau probisionala dek
 	private final String COMMAND_BUTTON0 = "COMMAND_BUTTON0";
 	private final String COMMAND_BUTTON = "COMMAND_BUTTON";
@@ -42,9 +48,22 @@ public class vtPrincipal extends JFrame implements ActionListener
 		});
 	}
 	public vtPrincipal()  {
+		
+		 try {                
+	          image = ImageIO.read(new File(".\\src\\Imagenes\\E.jpg"));
+	       } catch (IOException ex) {
+	            
+	       }
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(250, 80, 900, 560);
-		contentPane = new JPanel();
+		contentPane = new JPanel(){
+			@Override
+		    protected void paintComponent(Graphics g) {
+		        super.paintComponent(g);
+		        g.drawImage(image, 0, 0, this); 
+			}
+		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -69,12 +88,6 @@ public class vtPrincipal extends JFrame implements ActionListener
 		btnErabiltzaileaSortu.addActionListener(this);
 		btnErabiltzaileaSortu.setActionCommand(COMMAND_BUTTON);
 		
-
-		JLabel imag = new JLabel();
-		imag.setBounds(0, 0, 900, 562);
-		contentPane.add(imag);
-		imag.setIcon(new ImageIcon("img/Imagenes/E.png"));
-		imag.setIcon(new ImageIcon(".\\src\\Imagenes\\E.jpg"));
 		
 		JButton btnSartu = new JButton("Sartu");
 		btnSartu.setBounds(750, 11, 89, 23);
@@ -114,6 +127,9 @@ public class vtPrincipal extends JFrame implements ActionListener
 			
 			break;
 }
+		
 	}
+	
+
 
 }

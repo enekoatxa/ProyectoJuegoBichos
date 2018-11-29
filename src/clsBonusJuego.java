@@ -12,6 +12,11 @@ public class clsBonusJuego extends clsBonus
 		this.setPosY(posY);
 
 	}
+	public lblBonus labela()
+	{
+		return grafico;
+
+	}
 	@Override
 	public void setPosX(double posX) {
 		super.setPosX(posX);
@@ -24,13 +29,15 @@ public class clsBonusJuego extends clsBonus
 		grafico.setLocation( (int)posX, (int)posY );
 	}
  	
+ 	public void RotarBonus()
+	{
+		grafico.addGiro( 10 );
+		grafico.repaint();
+	}
  	public lblBonus getGrafico() {
 		return grafico;
 	}
  	public void setGrafico(lblBonus grafico) {
 		this.grafico = grafico;
-	}
-
- 	
-	
+	}	
 }

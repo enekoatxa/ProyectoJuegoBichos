@@ -1,10 +1,18 @@
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
 
 
+
+
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +25,9 @@ public class vtPartida extends JFrame
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
 	
+	private BufferedImage image;
+	
+	lblBonus bonus1;
 	clsBonusJuego bonus;
 	hiloCreador spawner=null;
 	hiloCalculadorPosiciones hiloPosiciones=null;
@@ -31,25 +42,28 @@ public class vtPartida extends JFrame
 	
 	public vtPartida()
 	{
+		
+		try {                
+	          image = ImageIO.read(new File(".\\src\\Imagenes\\FondoJuego1.jpg"));
+	       } catch (IOException ex) {
+	            
+	       }
 		//Creación de los dos hilos
-		panel = new JPanel();
-		panel.setLayout(null);
-		getContentPane().add(panel);
+		panel = new JPanel(){
+			@Override
+		    protected void paintComponent(Graphics g) {
+		        super.paintComponent(g);
+		        g.drawImage(image, 0, 0, this); 
+			}
+		};
+		setContentPane(panel);
+//		getContentPane().add(panel);
 		motor = new motorPartida(panel);
 		setSize(1920,1080);
+		panel.setLayout(null);
+
 		
-//		JLabel lblNewLabel = new JLabel("New label");
-//		lblNewLabel.setBounds(341, 38, 46, 14);
-//		panel.add(lblNewLabel);
-//		try
-//		{
-//			lblNewLabel.setIcon( new ImageIcon( vtPartida.class.getResource( "Imagenes/margarita.png" ).toURI().toURL() ) );
-//		}
-//		catch(Exception e)
-//		{
-//			System.out.println("Error: label de bonus no encontrado");
-//		}
-		
+
 	}
 	
 	
@@ -78,12 +92,10 @@ public class vtPartida extends JFrame
 			{
 				
 				bonus=motor.creaBonus();
-
+				bonus1=bonus.labela();
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
-//					motor.creaBonus();
-
 					contador=0;
 				}
 				contador++;
@@ -109,19 +121,25 @@ public class vtPartida extends JFrame
 		{
 			while(partidaSigue)
 			{
+				
+//				bonus.RotarBonus();
+				bonus1.addGiro( 10 );
+				bonus1.repaint();
+				
 				//Hemen for bat erabili beharko da, enemigo 1 baino gehiago egongo direlako batera (arraylista erabili)
-				for(int i=0; i<enemigos.size(); i++)
+				for(clsEnemigoJuego e : enemigos)
 				{
-					motor.calculaPosicionEnemigo(enemigos.get(i));
+					motor.calculaPosicionEnemigo(e);
 					
 					//meter aqui los choques
 					
-					if(motor.compararTiempoEnemigo(enemigos.get(i)))
+					if(motor.compararTiempoEnemigo(e))
 					{
-						motor.borraEnemigoPantalla(enemigos.get(i));
-						enemigos.remove(enemigos.get(i));
+						motor.borraEnemigoPantalla(e);
+						enemigos.remove(e);
 					}
 				}
+			
 						
 				try {
 					Thread.sleep(25);
@@ -129,6 +147,7 @@ public class vtPartida extends JFrame
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			
 			}
 			
 		}
