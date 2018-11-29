@@ -144,6 +144,16 @@ public class vtPartida extends JFrame
 	// programar choques
 	public boolean compararChoques(clsEnemigoJuego enemigo)
 	{
+//		double Xenemigo = enemigo.getPosX();
+//		double Yenemigo = enemigo.getPosY();
+//		double miPosX = bicho.getPosX();
+//		double miposY = bicho.getPosY();
+		
+		//choque lateral
+		//if(miPosX + mitamaño/2 >= Xenemigo - sutamaño/2 && miPosX - mitamaño/2 <= Xenemigo + sutamaño/2)
+		
+		//choque arriba y abajo
+		//if(miPosY + mitamaño/2 >= Yenemigo - sutamaño/2 && miPosY - mitamaño/2 <= Yenemigo + sutamaño/2)
 		return true;
 		
 	}
