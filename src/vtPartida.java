@@ -91,8 +91,8 @@ public class vtPartida extends JFrame
 			while(partidaSigue)
 			{
 				
-				bonus=motor.creaBonus();
-				bonus1=bonus.labela();
+//				bonus=motor.creaBonus();
+//				bonus1=bonus.labela();
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
@@ -123,20 +123,20 @@ public class vtPartida extends JFrame
 			{
 				
 //				bonus.RotarBonus();
-				bonus1.addGiro( 10 );
-				bonus1.repaint();
+//				bonus1.addGiro( 10 );
+//				bonus1.repaint();
 				
 				//Hemen for bat erabili beharko da, enemigo 1 baino gehiago egongo direlako batera (arraylista erabili)
-				for(clsEnemigoJuego e : enemigos)
+				for(int i =0; i<enemigos.size();i++)
 				{
-					motor.calculaPosicionEnemigo(e);
+					motor.calculaPosicionEnemigo(enemigos.get(i));
 					
 					//meter aqui los choques
 					
-					if(motor.compararTiempoEnemigo(e))
+					if(motor.compararTiempoEnemigo(enemigos.get(i)))
 					{
-						motor.borraEnemigoPantalla(e);
-						enemigos.remove(e);
+						motor.borraEnemigoPantalla(enemigos.get(i));
+						enemigos.remove(enemigos.get(i));
 					}
 				}
 			
@@ -185,13 +185,10 @@ public class vtPartida extends JFrame
 	
 	public void borrarEnemigos()
 	{
-		for(clsEnemigoJuego e : enemigos)
+		for(int i =0; i<enemigos.size();i++)
 		{
-			if(e.posX<-50||e.posX>1970||e.posY<-50||e.posY>1130)
-			{
-				borraEnemigo(e);
-				motor.borraEnemigoPantalla(e);
-			}
+			borraEnemigo(enemigos.get(i));
+			motor.borraEnemigoPantalla(enemigos.get(i));
 		}
 	}
 	
