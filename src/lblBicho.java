@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 
 public class lblBicho extends JLabel
 {
-	private final int size=40;
-	private final int radius=30;
+	private final int size=90;
+	private final int radius=90;
 	private double giro=0;
 	
 	private static final long serialVersionUID = 1L;
@@ -17,23 +17,19 @@ public class lblBicho extends JLabel
 	public lblBicho()
 	{
 		try {
-			setIcon( new ImageIcon( lblBicho.class.getResource( "img/BichoFoto.png" ).toURI().toURL() ) );
+			setIcon( new ImageIcon( lblBicho.class.getResource( "Imagenes/Mantangorria.png" ).toURI().toURL() ) );
 		} catch (Exception e) {
 			System.err.println( "Error en carga de recurso: bicho.png no encontrado" );
 			e.printStackTrace();
 		}
 		setBounds( 0, 0, size, size );
 	}
-	
 	//abria que hacer que cuanto reduzca en Y pase a mirar a abajo por ejemplo, y cuando aumente en X mire a la derecha etc
 	
 	public void setGiro(double giro)
 	{
 		this.giro=giro;
 	}
-	
-	
-	
 	protected void paintComponent(Graphics g) {
 //		super.paintComponent(g);   // En este caso no nos sirve el pintado normal de un JLabel
 		Image img = ((ImageIcon)getIcon()).getImage();

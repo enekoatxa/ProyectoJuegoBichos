@@ -6,12 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
-
-
-
-
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -24,7 +18,7 @@ public class vtPartida extends JFrame
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
-	
+	clsBichoJuego bicho;
 	private BufferedImage image;
 	
 	lblBonus bonus1;
@@ -45,6 +39,7 @@ public class vtPartida extends JFrame
 		
 		try {                
 	          image = ImageIO.read(new File(".\\src\\Imagenes\\FondoJuego1.jpg"));
+	          
 	       } catch (IOException ex) {
 	            
 	       }
@@ -59,6 +54,7 @@ public class vtPartida extends JFrame
 		setContentPane(panel);
 //		getContentPane().add(panel);
 		motor = new motorPartida(panel);
+		bicho=motor.crearBicho();
 		setSize(1920,1080);
 		panel.setLayout(null);
 
@@ -87,6 +83,7 @@ public class vtPartida extends JFrame
 		@Override
 		public void run() 
 		{
+		
 			
 			while(partidaSigue)
 			{
@@ -114,19 +111,18 @@ public class vtPartida extends JFrame
 	
 	class hiloCalculadorPosiciones implements Runnable
 	{
-
 		//Sleep de 40 milisegundos
 		@Override
 		public void run()
 		{
 			while(partidaSigue)
 			{
-				
 //				bonus.RotarBonus();
 //				bonus1.addGiro( 10 );
 //				bonus1.repaint();
 				
 				//Hemen for bat erabili beharko da, enemigo 1 baino gehiago egongo direlako batera (arraylista erabili)
+				motor.calculaPosBicho();
 				for(int i =0; i<enemigos.size();i++)
 				{
 					motor.calculaPosicionEnemigo(enemigos.get(i));
@@ -138,20 +134,15 @@ public class vtPartida extends JFrame
 						motor.borraEnemigoPantalla(enemigos.get(i));
 						enemigos.remove(enemigos.get(i));
 					}
-				}
-			
-						
+				}		
 				try {
 					Thread.sleep(25);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			
-			}
-			
-		}
-		
+			}	
+		}		
 	}
 	
 	public void terminaPartida()
@@ -192,19 +183,5 @@ public class vtPartida extends JFrame
 		}
 	}
 	
-	int posXBicho;
-	int posYBicho;
 	
-	//para saber donde se coloca el puntero del bicho en cada momento
-	 public void addEventos(){
-	        addMouseMotionListener(new MouseMotionAdapter(){
-	            @Override
-	           public void mouseMoved(MouseEvent evento){
-	      
-	                    posXBicho= evento.getX();
-	                    posYBicho =evento.getY();
-	                 
-	            }
-	         });
-	        }
 }

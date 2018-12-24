@@ -36,7 +36,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 	
 	public static void main(String[] args) {
 		
-		EventQueue.invokeLater(new Runnable() {
+	EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					vtPrincipal frame = new vtPrincipal();
