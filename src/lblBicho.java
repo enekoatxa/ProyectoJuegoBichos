@@ -8,7 +8,8 @@ import javax.swing.JLabel;
 
 public class lblBicho extends JLabel
 {
-	private final int size=90;
+	public static final int BICHO_TAMANYO = 90; 
+	public static final int RADIO_ESFERA_BICHO=30;
 	private final int radius=90;
 	private double giro=0;
 	
@@ -22,7 +23,7 @@ public class lblBicho extends JLabel
 			System.err.println( "Error en carga de recurso: bicho.png no encontrado" );
 			e.printStackTrace();
 		}
-		setBounds( 0, 0, size, size );
+		setBounds( 0, 0, BICHO_TAMANYO, BICHO_TAMANYO );
 	}
 	//abria que hacer que cuanto reduzca en Y pase a mirar a abajo por ejemplo, y cuando aumente en X mire a la derecha etc
 	
@@ -39,8 +40,8 @@ public class lblBicho extends JLabel
 		g2.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	
 		// Prepara rotación (siguientes operaciones se rotarán)
-        g2.rotate( giro, size/2, size/2 ); 
+        g2.rotate( giro, BICHO_TAMANYO/2, BICHO_TAMANYO/2 ); 
         // Dibujado de la imagen
-        g2.drawImage( img, 0, 0, size, size, null );
+        g2.drawImage( img, 0, 0, BICHO_TAMANYO, BICHO_TAMANYO, null );
 	}
 }

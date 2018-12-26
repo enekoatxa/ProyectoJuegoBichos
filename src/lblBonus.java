@@ -15,6 +15,7 @@ public class lblBonus extends JLabel //Bonus Puntuacion
 {
 	private static final long serialVersionUID = 1L;
 	public static final int BONUS_TAMANYO = 50; 
+	public static final int RADIO_ESFERA_BONUS = 23; 
 	private double miGiro = 0;
 
 	public lblBonus(int bonus)

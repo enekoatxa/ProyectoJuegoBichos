@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 
+
+
 public class vtPartida extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -72,7 +74,7 @@ public class vtPartida extends JFrame
 	public void startHilos()
 	{
 		spawner = new hiloCreador();
-		Thread hiloSpawn = new Thread( spawner);
+		Thread hiloSpawn = new Thread(spawner);
 		hiloSpawn.start();
 		
 		hiloPosiciones = new hiloCalculadorPosiciones();
@@ -94,12 +96,12 @@ public class vtPartida extends JFrame
 			while(partidaSigue)
 			{
 				
-				bonuses.add(motor.creaBonus());
 //				bonus=motor.creaBonus();
 //				bonus1=bonus.labela();
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
+					bonuses.add(motor.creaBonus());
 					contador=0;
 				}
 				contador++;
@@ -109,6 +111,8 @@ public class vtPartida extends JFrame
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			choquesConBonus();
+				
 			}
 			
 			
@@ -152,6 +156,31 @@ public class vtPartida extends JFrame
 				}
 			}	
 		}		
+	}
+	
+	
+	public int choquesConBonus() {
+		int numChoques = 0;
+		for (int i=bonuses.size()-1; i>=0; i--) {
+			clsBonusJuego est = bonuses.get(i);
+			if (chocaCocheConEstrella(est)) {
+				numChoques++;
+				System.out.println("sa");
+				panel.remove( i );
+				panel.repaint();
+				bonuses.remove( est );
+//				puntosJuego += 5;  // PASO 6
+			}
+		}
+		return numChoques;
+	}
+	
+	private boolean chocaCocheConEstrella( clsBonusJuego est ) {
+		double distX = est.getPosX()+lblBonus.BONUS_TAMANYO/2-bicho.getPosX()-lblBicho.BICHO_TAMANYO/2;
+		double distY = est.getPosY()+lblBonus.BONUS_TAMANYO/2-bicho.getPosY()-lblBicho.BICHO_TAMANYO/2;
+		double dist = Math.sqrt( distX*distX + distY*distY );
+		return (dist <= lblBicho.RADIO_ESFERA_BICHO + lblBonus.RADIO_ESFERA_BONUS);
+		// Si su distancia es menor que la suma de sus radios, es que tocan
 	}
 	
 	public void terminaPartida()
