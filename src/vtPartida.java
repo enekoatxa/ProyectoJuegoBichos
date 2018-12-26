@@ -96,12 +96,11 @@ public class vtPartida extends JFrame
 			while(partidaSigue)
 			{
 				
-//				bonus=motor.creaBonus();
-//				bonus1=bonus.labela();
+				bonuses.add(motor.creaBonus());
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
-					bonuses.add(motor.creaBonus());
+					
 					contador=0;
 				}
 				contador++;
@@ -111,7 +110,7 @@ public class vtPartida extends JFrame
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			choquesConBonus();
+			
 				
 			}
 			
@@ -131,8 +130,6 @@ public class vtPartida extends JFrame
 				for(int i =0; i<bonuses.size();i++)
 				{
 				bonuses.get(i).RotarBonus();
-//				bonus1.addGiro( 10 );
-//				bonus1.repaint();
 				}
 				//Hemen for bat erabili beharko da, enemigo 1 baino gehiago egongo direlako batera (arraylista erabili)
 				motor.calculaPosBicho();
@@ -154,6 +151,7 @@ public class vtPartida extends JFrame
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				choquesConBonus();
 			}	
 		}		
 	}
