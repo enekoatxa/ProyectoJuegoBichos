@@ -31,10 +31,8 @@ private void posicion()
 
 	Random rand = new Random();
 
-	posX=1000;
-	posY=500;
-//	posX=1920*rand.nextDouble();
-//	posY=1080*rand.nextDouble();
+	posX=1920*rand.nextDouble();
+	posY=1080*rand.nextDouble();
 }
 private void bonuspuntuacion()
 {

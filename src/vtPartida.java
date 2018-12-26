@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
@@ -18,6 +19,7 @@ public class vtPartida extends JFrame
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
+	ArrayList<clsBonusJuego>bonuses = new ArrayList<clsBonusJuego>();
 	clsBichoJuego bicho;
 	private BufferedImage image;
 	
@@ -32,7 +34,9 @@ public class vtPartida extends JFrame
 	//IMPORTANT bi kalse hauen in ber dituzue, bakoitzak beria, labela ta beste klasia juntzatzeizkienak IZENAK: clsBichoJuego, clsBonusJuego
 	//clsBichoJuego jugador;
 	//ArrayList <clsBonusJuego> bonuses;
+
 	
+
 	
 	public vtPartida()
 	{
@@ -58,7 +62,9 @@ public class vtPartida extends JFrame
 		setSize(1920,1080);
 		panel.setLayout(null);
 
-		
+		this.setCursor(this.getToolkit().createCustomCursor(
+	            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
+	            "null"));
 
 	}
 	
@@ -88,6 +94,7 @@ public class vtPartida extends JFrame
 			while(partidaSigue)
 			{
 				
+				bonuses.add(motor.creaBonus());
 //				bonus=motor.creaBonus();
 //				bonus1=bonus.labela();
 				enemigos.add(motor.creaEnemigo());
@@ -117,10 +124,12 @@ public class vtPartida extends JFrame
 		{
 			while(partidaSigue)
 			{
-//				bonus.RotarBonus();
+				for(int i =0; i<bonuses.size();i++)
+				{
+				bonuses.get(i).RotarBonus();
 //				bonus1.addGiro( 10 );
 //				bonus1.repaint();
-				
+				}
 				//Hemen for bat erabili beharko da, enemigo 1 baino gehiago egongo direlako batera (arraylista erabili)
 				motor.calculaPosBicho();
 				for(int i =0; i<enemigos.size();i++)
