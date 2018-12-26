@@ -31,7 +31,7 @@ public class clsBonusJuego extends clsBonus
  	
  	public void RotarBonus()
 	{
-		grafico.addGiro( 10 );
+		grafico.addGiro( 5 );
 		grafico.repaint();
 	}
  	public lblBonus getGrafico() {
