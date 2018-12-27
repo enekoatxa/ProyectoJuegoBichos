@@ -49,6 +49,14 @@ public class vtEntrar extends JFrame implements ActionListener
 		btnNewButton.setBounds(128, 108, 89, 23);
 		getContentPane().add(btnNewButton);
 		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						
+				setVisible (false);
+				dispose ();
+			}
+	});
+		
 		btnPassword = new JButton("");
 		btnPassword.setBounds(300, 63, 24, 24);
 		getContentPane().add(btnPassword);

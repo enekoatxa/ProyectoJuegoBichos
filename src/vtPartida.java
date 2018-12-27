@@ -1,5 +1,7 @@
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
@@ -61,7 +63,9 @@ public class vtPartida extends JFrame
 //		getContentPane().add(panel);
 		motor = new motorPartida(panel);
 		bicho=motor.crearBicho();
-		setSize(1920,1080);
+		setSize(1360,760);
+		Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize(); 
+		this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2)); 
 		panel.setLayout(null);
 
 		this.setCursor(this.getToolkit().createCustomCursor(

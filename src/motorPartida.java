@@ -113,15 +113,16 @@ public class motorPartida
 		devuelvePosX();
 		devuelvePosY();
 		bicho.mueve(posXActual, posYActual);
-	//	calcularVectorDireccion();
+		calcularVectorDireccion();
 	}
 	
-//	public void calcularVectorDireccion()
-//	{
-//		XVector=bicho.getPosX()-bicho.getPosXAnterior();
-//		YVector=bicho.getPosYAnterior()-bicho.getPosY();
-//		bicho.calcularGradosDireccion(XVector, YVector);
-//		bicho.pasarDireccion();
-//	}
+	public void calcularVectorDireccion()
+	{
+		XVector=bicho.getPosX()-bicho.getPosXAnterior()+50;
+		YVector=bicho.getPosY()-bicho.getPosYAnterior()+75;
+		System.out.println(XVector+ " "+YVector);
+		bicho.calcularGradosDireccion(XVector, YVector);
+		bicho.pasarDireccion();
+	}
 	
 }

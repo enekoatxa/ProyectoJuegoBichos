@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,21 +14,9 @@ import javax.swing.JLabel;
 public class vtMejoresPuntuaciones extends JFrame 
 {
 
+	
 	private JPanel contentPane;
 
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vtMejoresPuntuaciones frame = new vtMejoresPuntuaciones();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	public vtMejoresPuntuaciones() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 450, 300);
