@@ -1,7 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.PrintStream;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -18,6 +22,7 @@ public class vtEntrar extends JFrame implements ActionListener
 	
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
+	private Properties props = null;
 	
 	public vtEntrar() {
 		setTitle("Sartu");
@@ -30,9 +35,17 @@ public class vtEntrar extends JFrame implements ActionListener
 		lblUsuario.setBounds(10, 28, 97, 14);
 		getContentPane().add(lblUsuario);
 		
+		JCheckBox chkUsuario = new JCheckBox("Gorde erabiltzailea");
+		chkUsuario.setBounds(5, 48, 97, 14);
+		getContentPane().add(chkUsuario);
+		
 		JLabel lblPasahitza = new JLabel("Pasahitza:");
 		lblPasahitza.setBounds(10, 68, 73, 14);
 		getContentPane().add(lblPasahitza);
+		
+		JCheckBox chkPassword= new JCheckBox("Gorde pasahitza");
+		chkPassword.setBounds(5, 84, 97, 14);
+		getContentPane().add(chkPassword);
 		
 		textField = new JTextField();
 		textField.setBounds(175, 25, 115, 20);
@@ -48,10 +61,12 @@ public class vtEntrar extends JFrame implements ActionListener
 		JButton btnNewButton = new JButton("Sartu");
 		btnNewButton.setBounds(128, 108, 89, 23);
 		getContentPane().add(btnNewButton);
+		cargarProperties();
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-						
+				inicioSesion();
+				guardarProperties(chkUsuario.isSelected(), chkPassword.isSelected());
 				setVisible (false);
 				dispose ();
 			}
@@ -103,5 +118,45 @@ public class vtEntrar extends JFrame implements ActionListener
 		String contrasenya = textField_1.getText();
 		
 		//falta leer usuarios de base de datos, comparar e intentar entrar
-	} 
+	}
+	
+	public void guardarProperties(boolean chkUsuario, boolean chkPassword)
+	{
+		String usuario = textField.getText();
+		String contrasenya = textField_1.getText();
+		if(chkUsuario)
+		props.setProperty("nombre", usuario);
+		else
+		props.setProperty("nombre", "");
+		if(chkPassword)
+		props.setProperty("contrasenya", contrasenya);
+		else
+			props.setProperty("contrasenya", "");
+		
+		try {
+			props.storeToXML( new PrintStream( "Properties" ), "Propiedades de Configuracion" );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void cargarProperties()
+	{
+		props = new Properties();
+		try {
+			props.loadFromXML( new FileInputStream( "Properties" ) );
+		} catch (Exception e) { }
+		
+		textField.setText(props.getProperty("nombre"));
+		textField_1.setText(props.getProperty("contrasenya"));	
+	}
+	
+	
+
+	/** Guarda el fichero de propiedades con los valores que estén actualmente definidos
+	 */
+	public void saveProps() {
+		
+	}
+
 }
