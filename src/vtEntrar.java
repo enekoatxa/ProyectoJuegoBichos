@@ -2,11 +2,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.PrintStream;
+import java.util.HashSet;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
@@ -23,8 +25,11 @@ public class vtEntrar extends JFrame implements ActionListener
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
 	private Properties props = null;
+	private vtPrincipal vtPrincipal;
 	
-	public vtEntrar() {
+	public vtEntrar(vtPrincipal p) 
+	{
+		vtPrincipal=p;
 		setTitle("Sartu");
 		getContentPane().setLayout(null);
 		
@@ -65,7 +70,7 @@ public class vtEntrar extends JFrame implements ActionListener
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inicioSesion();
+				inicioSesion(vtPrincipal);
 				guardarProperties(chkUsuario.isSelected(), chkPassword.isSelected());
 				setVisible (false);
 				dispose ();
@@ -112,12 +117,24 @@ public class vtEntrar extends JFrame implements ActionListener
 		}
 	}
 	
-	public void inicioSesion()
+	public void inicioSesion(vtPrincipal p)
 	{
 		String usuario= textField.getText();
 		String contrasenya = textField_1.getText();
 		
+		HashSet usuarios = new HashSet<clsUsuario>();
 		//falta leer usuarios de base de datos, comparar e intentar entrar
+		
+		//usuarios=gestorBD.leerUsuarios;
+//		for(clsUsuario u: usuarios)
+//		{
+//		if(u.getNombre=nombre && u.getContrasenya)
+//		{
+//			p.setUsuario(u);
+//		}	
+//		}
+		JOptionPane.showMessageDialog(this, "Ez dago izen eta pasahitz hori dituen erabiltzailerik, saiatu berriro.");
+		
 	}
 	
 	public void guardarProperties(boolean chkUsuario, boolean chkPassword)

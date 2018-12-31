@@ -12,9 +12,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
@@ -101,6 +104,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 		btnSartu.addActionListener(this);
 		btnSartu.setActionCommand(COMMAND_BUTTON0);
 		usuario=null;
+		
 		}
 				
 	
@@ -120,9 +124,8 @@ public class vtPrincipal extends JFrame implements ActionListener
 			break;
 		case COMMAND_BUTTON0:
 			
-			vtEntrar=new vtEntrar();
+			vtEntrar=new vtEntrar(this);
 			vtEntrar.setVisible(true);
-			
 			
 			break;
 			
@@ -134,14 +137,25 @@ case COMMAND_BUTTON2:
 			
 			break;
 		case COMMAND_BUTTON1:
-			
-			vtPartida=new vtPartida();
-			vtPartida.setVisible(true);
-			vtPartida.startHilos();
-			
+			//if(usuario!=null)
+			{
+				vtPartida=new vtPartida(usuario);
+				vtPartida.setVisible(true);
+				vtPartida.startHilos();	
+			}
+			//else
+			{
+			//	JOptionPane.showMessageDialog(this, "Ez duzu erabiltzailea aukeratu");
+			}
 			break;
 }
 		
+	}
+	public clsUsuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(clsUsuario usuario) {
+		this.usuario = usuario;
 	}
 	
 
