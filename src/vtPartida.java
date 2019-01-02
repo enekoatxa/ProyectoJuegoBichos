@@ -25,9 +25,12 @@ public class vtPartida extends JFrame
 	ArrayList<clsBonusJuego>bonuses = new ArrayList<clsBonusJuego>();
 	clsBichoJuego bicho;
 	private BufferedImage image;
+	int o=0;
+	
 	
 	lblBonus bonus1;
 	JLabel lblpntcn;
+	JLabel lblPlus; 
 	clsBonusJuego bonus;
 	hiloCreador spawner=null;
 	hiloCalculadorPosiciones hiloPosiciones=null;
@@ -73,6 +76,11 @@ public class vtPartida extends JFrame
 		lblPuntuacin.setBounds(11, 0, 119, 46);
 		panel.add(lblPuntuacin);
 		
+		lblPlus = new JLabel("");
+		lblPlus.setForeground(Color.WHITE);
+		lblPlus.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(lblPlus);
+		
 		lblpntcn = new JLabel("");
 		lblpntcn.setForeground(Color.WHITE);
 		lblpntcn.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -103,6 +111,7 @@ public class vtPartida extends JFrame
 		//Sleep de unos segundos o un sleep variable segun avance la partida?
 		//Con este contador, cada 10 enemigos crea 1 bonus
 		int contador=0;
+		
 		@Override
 		public void run() 
 		{
@@ -142,17 +151,29 @@ public class vtPartida extends JFrame
 		{
 			while(partidaSigue)
 			{
+				o++;
+				if(o==15)
+				{
+					lblPlus.setVisible(false);
+					o=0;
+				}
 				for(int i =0; i<bonuses.size();i++)
 				{
 				bonuses.get(i).RotarBonus();
 				if(motor.chocaCocheConEstrella(bonuses.get(i)))
 				{
 					//hacer lo que pasa cuando choca
+					lblPlus.setVisible(true);
+					o=1;
+					Double x=bonuses.get(i).posX;
+					Double y=bonuses.get(i).posY;
+					int plus=bonuses.get(i).getPremio();
+					lblPlus.setText("+"+plus+"!");
 					puntuacion=puntuacion+bonuses.get(i).getPremio();
+					lblPlus.setBounds(x.intValue()+20,y.intValue()-50,100,100);
 					borraBonus(bonuses.get(i));
 					actualizarLabelPuntuacion();
 				}
-				
 				}
 				
 				motor.calculaPosBicho();
@@ -177,7 +198,8 @@ public class vtPartida extends JFrame
 					e.printStackTrace();
 				}
 				
-			}	
+
+			}
 
 		}		
 	}

@@ -5,15 +5,14 @@ public class clsUsuario
 {
 	private String usuario;
 	private String contrasenya;
-	private ArrayList<Double>puntuaciones;
+	private ArrayList<Integer>puntuaciones;
 	
 	public clsUsuario(String usuario, String contrasenya)
 	{
 		this.usuario=usuario;
 		this.contrasenya=contrasenya;
-		puntuaciones = new ArrayList<Double>();
-	}
-		
+		puntuaciones = new ArrayList<Integer>();
+	}	
 	public String getUsuario() {
 		return usuario;
 	}
@@ -26,12 +25,10 @@ public class clsUsuario
 	public void setContrasenya(String contrasenya) {
 		this.contrasenya = contrasenya;
 	}
-
-	public ArrayList<Double> getPuntuaciones() {
+	public ArrayList<Integer> getPuntuaciones() {
 		return puntuaciones;
 	}
-
-	public void setPuntuaciones(ArrayList<Double> puntuaciones) {
+	public void setPuntuaciones(ArrayList<Integer> puntuaciones) {
 		this.puntuaciones = puntuaciones;
 	}
 	
