@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Random;
 
 public class clsBonus
@@ -27,17 +29,15 @@ public clsBonus(int bonus) //Constructor sin parámetros(solo 1 parámetro que uti
 }
 private void posicion()
 {
-
+	Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize(); 
 
 	Random rand = new Random();
 
-	posX=1920*rand.nextDouble();
-	posY=1080*rand.nextDouble();
+	posX=pantallaTamano.getWidth()*rand.nextDouble();
+	posY=pantallaTamano.getHeight()*rand.nextDouble();
 }
 private void bonuspuntuacion()
 {
-
-
 	Random rand = new Random();
 
 	int  n = rand.nextInt(5)+1;

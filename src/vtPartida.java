@@ -2,18 +2,17 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
 
 
 
@@ -28,6 +27,7 @@ public class vtPartida extends JFrame
 	private BufferedImage image;
 	
 	lblBonus bonus1;
+	JLabel lblpntcn;
 	clsBonusJuego bonus;
 	hiloCreador spawner=null;
 	hiloCalculadorPosiciones hiloPosiciones=null;
@@ -66,6 +66,18 @@ public class vtPartida extends JFrame
 		setSize(pantallaTamano);
 		this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2)); 
 		panel.setLayout(null);
+		
+		JLabel lblPuntuacin = new JLabel("Puntuaci\u00F3n:");
+		lblPuntuacin.setForeground(Color.WHITE);
+		lblPuntuacin.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblPuntuacin.setBounds(11, 0, 119, 46);
+		panel.add(lblPuntuacin);
+		
+		lblpntcn = new JLabel("");
+		lblpntcn.setForeground(Color.WHITE);
+		lblpntcn.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblpntcn.setBounds(140, 0, 97, 46);
+		panel.add(lblpntcn);
 
 		this.setCursor(this.getToolkit().createCustomCursor(
 	            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
@@ -99,6 +111,7 @@ public class vtPartida extends JFrame
 			while(partidaSigue)
 			{
 				puntuacion++;
+				actualizarLabelPuntuacion();
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
@@ -135,7 +148,7 @@ public class vtPartida extends JFrame
 				if(motor.chocaCocheConEstrella(bonuses.get(i)))
 				{
 					//hacer lo que pasa cuando choca
-					puntuacion++;
+					puntuacion=puntuacion+bonuses.get(i).getPremio();
 					borraBonus(bonuses.get(i));
 					actualizarLabelPuntuacion();
 				}
@@ -210,7 +223,7 @@ public class vtPartida extends JFrame
 	}
 	public void borraBonus(clsBonusJuego b)
 	{
-		enemigos.remove(b);
+		bonuses.remove(b);
 		motor.borraBonusPantalla(b);
 	}
 	
@@ -225,6 +238,6 @@ public class vtPartida extends JFrame
 	
 	private void actualizarLabelPuntuacion() 
 	{
-		//Puntuazioa erakutsi!!!
+		lblpntcn.setText(" " +puntuacion);
 	}
 }
