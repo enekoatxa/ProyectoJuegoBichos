@@ -163,7 +163,6 @@ public class vtPartida extends JFrame
 			clsBonusJuego est = bonuses.get(i);
 			if (chocaCocheConEstrella(est)) {
 				numChoques++;
-				System.out.println("sa");
 				panel.remove( i );
 				panel.repaint();
 				bonuses.remove( est );
