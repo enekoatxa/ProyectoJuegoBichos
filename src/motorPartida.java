@@ -57,19 +57,13 @@ public class motorPartida
 	
 	public clsBonusJuego creaBonus()
 	{
-		bonus= new clsBonusJuego(0);
+		bonus= new clsBonusJuego();
 		panel.add(bonus.getGrafico());
 		bonus.getGrafico().repaint();
 		return bonus;
 	}
 	
-	public clsBonusJuego creaBonusTiempo()
-	{
-		bonus= new clsBonusJuego(1);
-		panel.add(bonus.getGrafico());
-		bonus.getGrafico().repaint();
-		return bonus;
-	}
+	
 	
 	public boolean compararTiempoEnemigo(clsEnemigoJuego enemigo)
 	{
@@ -80,6 +74,14 @@ public class motorPartida
 		return false;
 	}
 	
+	public boolean compararTiempoBonus(clsBonusJuego bonus)
+	{
+		long creacion = bonus.getCreacion();
+		long ahora = System.currentTimeMillis();
+		if(ahora-creacion>5000)
+		return true;
+		return false;
+	}
 
 	public void RotarBonus(clsBonusJuego bs)
 	{

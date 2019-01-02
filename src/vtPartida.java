@@ -39,7 +39,7 @@ public class vtPartida extends JFrame
 	clsUsuario usuario;
 	
 	private int puntuacion;
-	
+	private int tiempogen=1000;
 	
 	public vtPartida(clsUsuario usuario)
 	{
@@ -125,11 +125,12 @@ public class vtPartida extends JFrame
 				if(contador==10)
 				{
 					bonuses.add(motor.creaBonus());	
+					tiempogen=(int)(tiempogen/1.1);
 					contador=0;
 				}
 				contador++;
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(tiempogen);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -160,20 +161,29 @@ public class vtPartida extends JFrame
 				for(int i =0; i<bonuses.size();i++)
 				{
 				bonuses.get(i).RotarBonus();
-				if(motor.chocaCocheConEstrella(bonuses.get(i)))
-				{
-					//hacer lo que pasa cuando choca
-					lblPlus.setVisible(true);
-					o=1;
-					Double x=bonuses.get(i).posX;
-					Double y=bonuses.get(i).posY;
-					int plus=bonuses.get(i).getPremio();
-					lblPlus.setText("+"+plus+"!");
-					puntuacion=puntuacion+bonuses.get(i).getPremio();
-					lblPlus.setBounds(x.intValue()+20,y.intValue()-50,100,100);
-					borraBonus(bonuses.get(i));
-					actualizarLabelPuntuacion();
-				}
+					
+					if(motor.chocaCocheConEstrella(bonuses.get(i)))
+					{
+						//hacer lo que pasa cuando choca
+						lblPlus.setVisible(true);
+						o=1;
+						Double x=bonuses.get(i).posX;
+						Double y=bonuses.get(i).posY;
+						int plus=bonuses.get(i).getPremio();
+						lblPlus.setText("+"+plus+"!");
+						puntuacion=puntuacion+bonuses.get(i).getPremio();
+						lblPlus.setBounds(x.intValue()+20,y.intValue()-50,100,100);
+						borraBonus(bonuses.get(i));
+						actualizarLabelPuntuacion();
+					}
+					else
+					{
+						if(motor.compararTiempoBonus(bonuses.get(i)))
+						{
+							borraBonus(bonuses.get(i));
+						}
+					}
+					
 				}
 				
 				motor.calculaPosBicho();
@@ -187,8 +197,7 @@ public class vtPartida extends JFrame
 										
 					if(motor.compararTiempoEnemigo(enemigos.get(i)))
 					{
-						motor.borraEnemigoPantalla(enemigos.get(i));
-						enemigos.remove(enemigos.get(i));
+						borraEnemigo(enemigos.get(i));
 					}
 				}		
 				try {

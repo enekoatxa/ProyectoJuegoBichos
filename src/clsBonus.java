@@ -9,20 +9,13 @@ public class clsBonus
 	protected int premio;
 	protected double posX;
 	protected double posY;
-
-public clsBonus(int bonus) //Constructor sin parámetros(solo 1 parámetro que utilizaremos para decidir la clase de bonus que será entre los dos que hemos definido. )
+	protected long creacion;
+	
+public clsBonus() //Constructor sin parámetros(solo 1 parámetro que utilizaremos para decidir la clase de bonus que será entre los dos que hemos definido. )
 {
-		if(bonus==0)//Si es 0 el bonus será de puntuación.
-	{
+	creacion=System.currentTimeMillis();
+	bonuspuntuacion(); //Le da una puntuación aleatoria entre 5 puntuaciones a nuestro bonus.
 		
-
-		bonuspuntuacion(); //Le da una puntuación aleatoria entre 5 puntuaciones a nuestro bonus.
-		
-	}
-	else	//Si es 1 el bonus será de tiempo
-	{
-		bonustiempo(); //Le da tiempo extra a nuestro bonus, entre 5, 10, 15, 20 o 35 segundos.
-	}
 	posicion();
 	
 	
@@ -56,26 +49,7 @@ private void bonuspuntuacion()
 		break;
 	}
 }
-private void bonustiempo()
-{
-	Random rand = new Random();
 
-	int  n = rand.nextInt(5)+1;
-	switch(n)
-	{
-	case 1:premio=5;
-		break;
-	case 2:premio=10;
-		break;
-	case 3:premio=15;
-		break;
-	case 4:premio=20;
-		break;
-	case 5:premio=25;
-		break;
-	}
-	
-}
 public int getBonus() {
 	return bonus;
 }
@@ -106,6 +80,12 @@ public double getPosY() {
 
 public void setPosY(double posY) {
 	this.posY = posY;
+}
+public long getCreacion() {
+	return creacion;
+}
+public void setCreacion(long creacion) {
+	this.creacion = creacion;
 }
 
 

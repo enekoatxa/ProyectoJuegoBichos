@@ -4,9 +4,9 @@ public class clsBonusJuego extends clsBonus
 	private lblBonus grafico;
 	
 	
-	public clsBonusJuego(int bonus)
+	public clsBonusJuego()
 	{
-		super(bonus);
+		super();
 		grafico = new lblBonus(bonus);
 		this.setPosX(posX);
 		this.setPosY(posY);
