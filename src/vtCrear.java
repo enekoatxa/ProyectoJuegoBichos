@@ -65,6 +65,14 @@ public class vtCrear extends JFrame implements ActionListener
 		btnNewButton.setBounds(103, 149, 89, 23);
 		getContentPane().add(btnNewButton);
 		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						
+				setVisible (false);
+				dispose ();
+			}
+	});
+		
 		btnPassword = new JButton("");
 		btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 		btnPassword.setBounds(317, 65, 24, 24);

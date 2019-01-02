@@ -2,6 +2,7 @@ import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -17,13 +18,12 @@ public class motorPartida
 	double XVector=0;
 	double YVector=0;
 	double grados=0;
-	
+	JLabel lblPuntuacion;
 	
 	public motorPartida(JPanel panel)
 	{
 		this.panel=panel;
-		panel.setVisible(true);
-		
+		panel.setVisible(true);		
 	}
 	
 	public clsEnemigoJuego creaEnemigo()
@@ -33,6 +33,7 @@ public class motorPartida
 		enemigo.getGrafico().repaint();
 		return enemigo;
 	}
+	
 	
 	public clsBichoJuego crearBicho()
 	{
@@ -74,7 +75,7 @@ public class motorPartida
 	{
 		long creacion = enemigo.getCreacion();
 		long ahora = System.currentTimeMillis();
-		if(ahora-creacion>1000)
+		if(ahora-creacion>10000)
 		return true;
 		return false;
 	}
@@ -108,20 +109,44 @@ public class motorPartida
 		e.getGrafico().repaint();
 	}
 
+	public void borraBonusPantalla(clsBonusJuego b)
+	{
+		panel.remove(b.getGrafico());
+		b.getGrafico().repaint();
+	}
+	
 	public void calculaPosBicho() 
 	{
 		devuelvePosX();
 		devuelvePosY();
 		bicho.mueve(posXActual, posYActual);
-	//	calcularVectorDireccion();
+		calcularVectorDireccion();
 	}
 	
-//	public void calcularVectorDireccion()
-//	{
-//		XVector=bicho.getPosX()-bicho.getPosXAnterior();
-//		YVector=bicho.getPosYAnterior()-bicho.getPosY();
-//		bicho.calcularGradosDireccion(XVector, YVector);
-//		bicho.pasarDireccion();
-//	}
+	public void calcularVectorDireccion()
+	{
+		XVector=bicho.getPosX()-bicho.getPosXAnterior()+50;
+		YVector=bicho.getPosY()-bicho.getPosYAnterior()+75;
+		//System.out.println(XVector+ " "+YVector);
+		bicho.calcularGradosDireccion(XVector, YVector);
+		bicho.pasarDireccion();
+	}
+	
+	public boolean choqueConEnemigo(clsEnemigoJuego ene)
+	{
+		double distX = ene.getPosX()+lblEnemigo.ENEMIGO_TAMANYO/2-bicho.getPosX()-lblBicho.BICHO_TAMANYO/2;
+		double distY = ene.getPosY()+lblEnemigo.ENEMIGO_TAMANYO/2-bicho.getPosY()-lblBicho.BICHO_TAMANYO/2;
+		double dist = Math.sqrt( distX*distX + distY*distY );
+		return (dist <= lblBicho.RADIO_ESFERA_BICHO + lblEnemigo.ENEMIGO_RADIO);
+	}
+	
+	public boolean chocaCocheConEstrella( clsBonusJuego est ) 
+	{
+		double distX = est.getPosX()+lblBonus.BONUS_TAMANYO/2-bicho.getPosX()-lblBicho.BICHO_TAMANYO/2;
+		double distY = est.getPosY()+lblBonus.BONUS_TAMANYO/2-bicho.getPosY()-lblBicho.BICHO_TAMANYO/2;
+		double dist = Math.sqrt( distX*distX + distY*distY );
+		return (dist <= lblBicho.RADIO_ESFERA_BICHO + lblBonus.RADIO_ESFERA_BONUS);
+		
+	}
 	
 }

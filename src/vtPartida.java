@@ -1,5 +1,7 @@
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
@@ -31,17 +33,15 @@ public class vtPartida extends JFrame
 	hiloCalculadorPosiciones hiloPosiciones=null;
 	boolean partidaSigue=true;
 	JPanel panel; 
+	clsUsuario usuario;
+	
+	private int puntuacion;
 	
 	
-	//IMPORTANT bi kalse hauen in ber dituzue, bakoitzak beria, labela ta beste klasia juntzatzeizkienak IZENAK: clsBichoJuego, clsBonusJuego
-	//clsBichoJuego jugador;
-	//ArrayList <clsBonusJuego> bonuses;
-
-	
-
-	
-	public vtPartida()
+	public vtPartida(clsUsuario usuario)
 	{
+		this.usuario=usuario;
+		puntuacion=0;
 		
 		try {                
 	          image = ImageIO.read(new File(".\\src\\Imagenes\\FondoJuego1.jpg"));
@@ -61,7 +61,10 @@ public class vtPartida extends JFrame
 //		getContentPane().add(panel);
 		motor = new motorPartida(panel);
 		bicho=motor.crearBicho();
-		setSize(1920,1080);
+				
+		Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize(); 
+		setSize(pantallaTamano);
+		this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2)); 
 		panel.setLayout(null);
 
 		this.setCursor(this.getToolkit().createCustomCursor(
@@ -95,12 +98,11 @@ public class vtPartida extends JFrame
 			
 			while(partidaSigue)
 			{
-				
-				bonuses.add(motor.creaBonus());
+				puntuacion++;
 				enemigos.add(motor.creaEnemigo());
 				if(contador==10)
 				{
-					
+					bonuses.add(motor.creaBonus());	
 					contador=0;
 				}
 				contador++;
@@ -121,7 +123,7 @@ public class vtPartida extends JFrame
 	
 	class hiloCalculadorPosiciones implements Runnable
 	{
-		//Sleep de 40 milisegundos
+		//Sleep de 25 milisegundos
 		@Override
 		public void run()
 		{
@@ -130,15 +132,25 @@ public class vtPartida extends JFrame
 				for(int i =0; i<bonuses.size();i++)
 				{
 				bonuses.get(i).RotarBonus();
+				if(motor.chocaCocheConEstrella(bonuses.get(i)))
+				{
+					//hacer lo que pasa cuando choca
+					puntuacion++;
+					borraBonus(bonuses.get(i));
+					actualizarLabelPuntuacion();
 				}
-				//Hemen for bat erabili beharko da, enemigo 1 baino gehiago egongo direlako batera (arraylista erabili)
+				
+				}
+				
 				motor.calculaPosBicho();
 				for(int i =0; i<enemigos.size();i++)
 				{
 					motor.calculaPosicionEnemigo(enemigos.get(i));
-					
-					//meter aqui los choques
-					
+					if(motor.choqueConEnemigo(enemigos.get(i)))
+					{
+						terminaPartida();
+					}	
+										
 					if(motor.compararTiempoEnemigo(enemigos.get(i)))
 					{
 						motor.borraEnemigoPantalla(enemigos.get(i));
@@ -151,57 +163,36 @@ public class vtPartida extends JFrame
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				choquesConBonus();
+				
 			}	
+
 		}		
 	}
-	
-	
-	public int choquesConBonus() {
-		int numChoques = 0;
-		for (int i=bonuses.size()-1; i>=0; i--) {
-			clsBonusJuego est = bonuses.get(i);
-			if (chocaCocheConEstrella(est)) {
-				numChoques++;
-				panel.remove( i );
-				panel.repaint();
-				bonuses.remove( est );
-//				puntosJuego += 5;  // PASO 6
-			}
-		}
-		return numChoques;
-	}
-	
-	private boolean chocaCocheConEstrella( clsBonusJuego est ) {
-		double distX = est.getPosX()+lblBonus.BONUS_TAMANYO/2-bicho.getPosX()-lblBicho.BICHO_TAMANYO/2;
-		double distY = est.getPosY()+lblBonus.BONUS_TAMANYO/2-bicho.getPosY()-lblBicho.BICHO_TAMANYO/2;
-		double dist = Math.sqrt( distX*distX + distY*distY );
-		return (dist <= lblBicho.RADIO_ESFERA_BICHO + lblBonus.RADIO_ESFERA_BONUS);
-		// Si su distancia es menor que la suma de sus radios, es que tocan
-	}
-	
+//	
+//	
+//	public int choquesConBonus() {
+//		int numChoques = 0;
+//		for (int i=bonuses.size()-1; i>=0; i--) {
+//			clsBonusJuego est = bonuses.get(i);
+//			if (chocaCocheConEstrella(est)) {
+//				numChoques++;
+//				panel.remove( i );
+//				panel.repaint();
+//				bonuses.remove( est );
+////				puntosJuego += 5;  // PASO 6
+//			}
+//=======
+//>>>>>>> ce7021064bd8725bd971ae410a135d42e1efe82e
+//		}
+//
+//				
+//	}
+		
 	public void terminaPartida()
 	{
 		partidaSigue=false;
 	}
 
-	
-	// programar choques
-	public boolean compararChoques(clsEnemigoJuego enemigo)
-	{
-//		double Xenemigo = enemigo.getPosX();
-//		double Yenemigo = enemigo.getPosY();
-//		double miPosX = bicho.getPosX();
-//		double miposY = bicho.getPosY();
-		
-		//choque lateral
-		//if(miPosX + mitamaño/2 >= Xenemigo - sutamaño/2 && miPosX - mitamaño/2 <= Xenemigo + sutamaño/2)
-		
-		//choque arriba y abajo
-		//if(miPosY + mitamaño/2 >= Yenemigo - sutamaño/2 && miPosY - mitamaño/2 <= Yenemigo + sutamaño/2)
-		return true;
-		
-	}
 	
 	public void borraEnemigo(clsEnemigoJuego e)
 	{
@@ -217,6 +208,23 @@ public class vtPartida extends JFrame
 			motor.borraEnemigoPantalla(enemigos.get(i));
 		}
 	}
+	public void borraBonus(clsBonusJuego b)
+	{
+		enemigos.remove(b);
+		motor.borraBonusPantalla(b);
+	}
 	
+	public void borrarBonuses()
+	{
+		for(int i =0; i<bonuses.size();i++)
+		{
+			borraBonus(bonuses.get(i));
+			motor.borraBonusPantalla(bonuses.get(i));
+		}
+	}
 	
+	private void actualizarLabelPuntuacion() 
+	{
+		//Puntuazioa erakutsi!!!
+	}
 }

@@ -1,8 +1,14 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.PrintStream;
+import java.util.HashSet;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
@@ -18,8 +24,12 @@ public class vtEntrar extends JFrame implements ActionListener
 	
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
+	private Properties props = null;
+	private vtPrincipal vtPrincipal;
 	
-	public vtEntrar() {
+	public vtEntrar(vtPrincipal p) 
+	{
+		vtPrincipal=p;
 		setTitle("Sartu");
 		getContentPane().setLayout(null);
 		
@@ -30,9 +40,17 @@ public class vtEntrar extends JFrame implements ActionListener
 		lblUsuario.setBounds(10, 28, 97, 14);
 		getContentPane().add(lblUsuario);
 		
+		JCheckBox chkUsuario = new JCheckBox("Gorde erabiltzailea");
+		chkUsuario.setBounds(5, 48, 97, 14);
+		getContentPane().add(chkUsuario);
+		
 		JLabel lblPasahitza = new JLabel("Pasahitza:");
 		lblPasahitza.setBounds(10, 68, 73, 14);
 		getContentPane().add(lblPasahitza);
+		
+		JCheckBox chkPassword= new JCheckBox("Gorde pasahitza");
+		chkPassword.setBounds(5, 84, 97, 14);
+		getContentPane().add(chkPassword);
 		
 		textField = new JTextField();
 		textField.setBounds(175, 25, 115, 20);
@@ -48,6 +66,16 @@ public class vtEntrar extends JFrame implements ActionListener
 		JButton btnNewButton = new JButton("Sartu");
 		btnNewButton.setBounds(128, 108, 89, 23);
 		getContentPane().add(btnNewButton);
+		cargarProperties();
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inicioSesion(vtPrincipal);
+				guardarProperties(chkUsuario.isSelected(), chkPassword.isSelected());
+				setVisible (false);
+				dispose ();
+			}
+	});
 		
 		btnPassword = new JButton("");
 		btnPassword.setBounds(300, 63, 24, 24);
@@ -89,11 +117,63 @@ public class vtEntrar extends JFrame implements ActionListener
 		}
 	}
 	
-	public void inicioSesion()
+	public void inicioSesion(vtPrincipal p)
 	{
 		String usuario= textField.getText();
 		String contrasenya = textField_1.getText();
 		
+		HashSet usuarios = new HashSet<clsUsuario>();
 		//falta leer usuarios de base de datos, comparar e intentar entrar
-	} 
+		
+		//usuarios=gestorBD.leerUsuarios;
+//		for(clsUsuario u: usuarios)
+//		{
+//		if(u.getNombre=nombre && u.getContrasenya)
+//		{
+//			p.setUsuario(u);
+//		}	
+//		}
+		JOptionPane.showMessageDialog(this, "Ez dago izen eta pasahitz hori dituen erabiltzailerik, saiatu berriro.");
+		
+	}
+	
+	public void guardarProperties(boolean chkUsuario, boolean chkPassword)
+	{
+		String usuario = textField.getText();
+		String contrasenya = textField_1.getText();
+		if(chkUsuario)
+		props.setProperty("nombre", usuario);
+		else
+		props.setProperty("nombre", "");
+		if(chkPassword)
+		props.setProperty("contrasenya", contrasenya);
+		else
+			props.setProperty("contrasenya", "");
+		
+		try {
+			props.storeToXML( new PrintStream( "Properties" ), "Propiedades de Configuracion" );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void cargarProperties()
+	{
+		props = new Properties();
+		try {
+			props.loadFromXML( new FileInputStream( "Properties" ) );
+		} catch (Exception e) { }
+		
+		textField.setText(props.getProperty("nombre"));
+		textField_1.setText(props.getProperty("contrasenya"));	
+	}
+	
+	
+
+	/** Guarda el fichero de propiedades con los valores que estén actualmente definidos
+	 */
+	public void saveProps() {
+		
+	}
+
 }

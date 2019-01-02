@@ -12,9 +12,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
@@ -24,6 +27,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 	private vtCrear vtCrear;
 	private vtEntrar vtEntrar;
 	private vtPartida vtPartida;
+	private vtMejoresPuntuaciones vtp;
 	private clsUsuario usuario;
 	private BufferedImage image;
 	//main hau probisionala dek
@@ -39,6 +43,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 	EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					vtPrincipal frame = new vtPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -81,7 +86,11 @@ public class vtPrincipal extends JFrame implements ActionListener
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnNewButton.setBounds(94, 207, 293, 36);
 		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(this);
+		btnNewButton.setActionCommand(COMMAND_BUTTON2);
 		
+		
+	
 		JButton btnErabiltzaileaSortu = new JButton("Erabiltzailea sortu");
 		btnErabiltzaileaSortu.setBounds(10, 11, 161, 23);
 		contentPane.add(btnErabiltzaileaSortu);
@@ -95,6 +104,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 		btnSartu.addActionListener(this);
 		btnSartu.setActionCommand(COMMAND_BUTTON0);
 		usuario=null;
+		
 		}
 				
 	
@@ -114,20 +124,38 @@ public class vtPrincipal extends JFrame implements ActionListener
 			break;
 		case COMMAND_BUTTON0:
 			
-			vtEntrar=new vtEntrar();
+			vtEntrar=new vtEntrar(this);
 			vtEntrar.setVisible(true);
+			
+			break;
+			
+case COMMAND_BUTTON2:
+			
+			vtp=new vtMejoresPuntuaciones();
+			vtp.setVisible(true);
 			
 			
 			break;
 		case COMMAND_BUTTON1:
-			
-			vtPartida=new vtPartida();
-			vtPartida.setVisible(true);
-			vtPartida.startHilos();
-			
+			//if(usuario!=null)
+			{
+				vtPartida=new vtPartida(usuario);
+				vtPartida.setVisible(true);
+				vtPartida.startHilos();	
+			}
+			//else
+			{
+			//	JOptionPane.showMessageDialog(this, "Ez duzu erabiltzailea aukeratu");
+			}
 			break;
 }
 		
+	}
+	public clsUsuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(clsUsuario usuario) {
+		this.usuario = usuario;
 	}
 	
 

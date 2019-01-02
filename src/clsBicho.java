@@ -60,7 +60,8 @@ public class clsBicho
 	
 	public void calcularGradosDireccion(double XVector, double YVector) 
 	{
-		grados = Math.asin(YVector/XVector);
+		grados =Math.atan(XVector/YVector)*4;
+		
 	}
 	
 }
