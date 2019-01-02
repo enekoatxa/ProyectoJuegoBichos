@@ -40,7 +40,6 @@ public class vtPartida extends JFrame
 	
 	private int puntuacion;
 	private int tiempogen=1000;
-	private JLabel lblNewLabel;
 	
 	public vtPartida(clsUsuario usuario)
 	{
@@ -71,7 +70,7 @@ public class vtPartida extends JFrame
 		this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2)); 
 		panel.setLayout(null);
 		
-		JLabel lblPuntuacin = new JLabel("Puntuaci\u00F3n:");
+		JLabel lblPuntuacin = new JLabel("Puntuazioa:");
 		lblPuntuacin.setForeground(Color.WHITE);
 		lblPuntuacin.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblPuntuacin.setBounds(11, 0, 119, 46);
@@ -88,13 +87,6 @@ public class vtPartida extends JFrame
 		lblpntcn.setBounds(140, 0, 97, 46);
 		panel.add(lblpntcn);
 		
-		lblNewLabel = new JLabel("Berriz saiatu");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		lblNewLabel.setBounds(396, 264, 179, 111);
-		panel.add(lblNewLabel);
-		lblNewLabel.setVisible(false);
-
 		this.setCursor(this.getToolkit().createCustomCursor(
 	            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
 	            "null"));
@@ -113,7 +105,7 @@ public class vtPartida extends JFrame
 		hiloPosi.start();
 				
 	}
-	
+		
 	class hiloCreador implements Runnable
 	{
 		//Sleep de unos segundos o un sleep variable segun avance la partida?
@@ -233,7 +225,9 @@ public class vtPartida extends JFrame
 	public void terminaPartida()
 	{
 		partidaSigue=false;
-		lblNewLabel.setVisible(true);
+		vtFinal ultima = new vtFinal(usuario, puntuacion);
+		ultima.setVisible(true);
+		this.dispose();
 	}
 
 	
