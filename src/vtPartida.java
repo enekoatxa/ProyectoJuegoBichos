@@ -40,6 +40,7 @@ public class vtPartida extends JFrame
 	
 	private int puntuacion;
 	private int tiempogen=1000;
+	private JLabel lblNewLabel;
 	
 	public vtPartida(clsUsuario usuario)
 	{
@@ -86,6 +87,13 @@ public class vtPartida extends JFrame
 		lblpntcn.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblpntcn.setBounds(140, 0, 97, 46);
 		panel.add(lblpntcn);
+		
+		lblNewLabel = new JLabel("Berriz saiatu");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblNewLabel.setBounds(396, 264, 179, 111);
+		panel.add(lblNewLabel);
+		lblNewLabel.setVisible(false);
 
 		this.setCursor(this.getToolkit().createCustomCursor(
 	            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
@@ -172,7 +180,7 @@ public class vtPartida extends JFrame
 						int plus=bonuses.get(i).getPremio();
 						lblPlus.setText("+"+plus+"!");
 						puntuacion=puntuacion+bonuses.get(i).getPremio();
-						lblPlus.setBounds(x.intValue()+20,y.intValue()-50,100,100);
+						lblPlus.setBounds(x.intValue(),y.intValue(),100,100);
 						borraBonus(bonuses.get(i));
 						actualizarLabelPuntuacion();
 					}
@@ -180,7 +188,16 @@ public class vtPartida extends JFrame
 					{
 						if(motor.compararTiempoBonus(bonuses.get(i)))
 						{
+							lblPlus.setVisible(true);
+							o=1;
+							Double x=bonuses.get(i).posX;
+							Double y=bonuses.get(i).posY;
+							int plus=bonuses.get(i).getPremio();
+							lblPlus.setText(plus+"...");
+							lblPlus.setBounds(x.intValue(),y.intValue(),100,100);
 							borraBonus(bonuses.get(i));
+							actualizarLabelPuntuacion();
+
 						}
 					}
 					
@@ -212,29 +229,11 @@ public class vtPartida extends JFrame
 
 		}		
 	}
-//	
-//	
-//	public int choquesConBonus() {
-//		int numChoques = 0;
-//		for (int i=bonuses.size()-1; i>=0; i--) {
-//			clsBonusJuego est = bonuses.get(i);
-//			if (chocaCocheConEstrella(est)) {
-//				numChoques++;
-//				panel.remove( i );
-//				panel.repaint();
-//				bonuses.remove( est );
-////				puntosJuego += 5;  // PASO 6
-//			}
-//=======
-//>>>>>>> ce7021064bd8725bd971ae410a135d42e1efe82e
-//		}
-//
-//				
-//	}
 		
 	public void terminaPartida()
 	{
 		partidaSigue=false;
+		lblNewLabel.setVisible(true);
 	}
 
 	
