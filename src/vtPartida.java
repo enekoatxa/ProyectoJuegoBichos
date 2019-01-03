@@ -72,7 +72,7 @@ public class vtPartida extends JFrame
 		this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2)); 
 		panel.setLayout(null);
 		
-		JLabel lblPuntuacin = new JLabel("Puntuaci\u00F3n:");
+		JLabel lblPuntuacin = new JLabel("Puntuazioa:");
 		lblPuntuacin.setForeground(Color.WHITE);
 		lblPuntuacin.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblPuntuacin.setBounds(11, 0, 119, 46);
@@ -89,12 +89,9 @@ public class vtPartida extends JFrame
 		lblpntcn.setBounds(140, 0, 97, 46);
 		panel.add(lblpntcn);
 		
-
-
 		this.setCursor(this.getToolkit().createCustomCursor(
 	            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
 	            "null"));
-
 	}
 	
 	
@@ -109,7 +106,7 @@ public class vtPartida extends JFrame
 		hiloPosi.start();
 				
 	}
-	
+		
 	class hiloCreador implements Runnable
 	{
 		//Sleep de unos segundos o un sleep variable segun avance la partida?
@@ -169,6 +166,7 @@ public class vtPartida extends JFrame
 					if(motor.chocaCocheConEstrella(bonuses.get(i)))
 					{
 						//hacer lo que pasa cuando choca
+						Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize(); 
 						lblPlus.setVisible(true);
 						o=1;
 						Double x=bonuses.get(i).posX;
@@ -176,7 +174,23 @@ public class vtPartida extends JFrame
 						int plus=bonuses.get(i).getPremio();
 						lblPlus.setText("+"+plus+"!");
 						puntuacion=puntuacion+bonuses.get(i).getPremio();
-						lblPlus.setBounds(x.intValue(),y.intValue(),50,50);
+						if((x.intValue()>pantallaTamano.width-100)&&(y.intValue()>pantallaTamano.height-100))
+						{
+							lblPlus.setBounds(pantallaTamano.width-200,pantallaTamano.height-100,100,100);
+						}
+						if(x.intValue()>pantallaTamano.width-100)
+						{
+							lblPlus.setBounds(pantallaTamano.width-200,y.intValue(),100,100);
+						}
+						if(y.intValue()>pantallaTamano.height-100)
+						{
+							lblPlus.setBounds(x.intValue(),pantallaTamano.height-100,100,100);
+						}
+						else
+						{
+							lblPlus.setBounds(x.intValue(),y.intValue(),100,100);
+	
+						}
 						borraBonus(bonuses.get(i));
 						actualizarLabelPuntuacion();
 					}
@@ -190,7 +204,7 @@ public class vtPartida extends JFrame
 							Double y=bonuses.get(i).posY;
 							int plus=bonuses.get(i).getPremio();
 							lblPlus.setText(plus+"...");
-							lblPlus.setBounds(x.intValue(),y.intValue(),50,50);
+							lblPlus.setBounds(x.intValue(),y.intValue(),100,100);
 							borraBonus(bonuses.get(i));
 							actualizarLabelPuntuacion();
 
@@ -229,10 +243,10 @@ public class vtPartida extends JFrame
 	public void terminaPartida()
 	{
 		partidaSigue=false;
-		
+		vtFinal ultima = new vtFinal(usuario, puntuacion);
+		ultima.setVisible(true);
+		this.dispose();
 	}
-
-	
 	public void borraEnemigo(clsEnemigoJuego e)
 	{
 		enemigos.remove(e);

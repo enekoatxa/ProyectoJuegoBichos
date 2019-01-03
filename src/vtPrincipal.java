@@ -30,29 +30,18 @@ public class vtPrincipal extends JFrame implements ActionListener
 	private vtMejoresPuntuaciones vtp;
 	private clsUsuario usuario;
 	private BufferedImage image;
-	//main hau probisionala dek
+	
 	private final String COMMAND_BUTTON0 = "COMMAND_BUTTON0";
 	private final String COMMAND_BUTTON = "COMMAND_BUTTON";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
 	private final String COMMAND_BUTTON2 = "COMMAND_BUTTON2";
-	private final String COMMAND_BUTTON3= "COMMAND_BUTTON3";
-	private final String COMMAND_BUTTON4= "COMMAND_BUTTON4";
-	
-	public static void main(String[] args) {
-		
-	EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-					vtPrincipal frame = new vtPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public vtPrincipal()  {
+
+	public vtPrincipal(clsUsuario usuario)  
+	{
+		if(usuario!=null)
+		{
+			this.usuario=usuario;
+		}
 		
 		 try {                
 	          image = ImageIO.read(new File(".\\src\\Imagenes\\E.jpg"));
@@ -124,9 +113,9 @@ public class vtPrincipal extends JFrame implements ActionListener
 			break;
 		case COMMAND_BUTTON0:
 			
-			vtEntrar=new vtEntrar(this);
+			vtEntrar=new vtEntrar();
 			vtEntrar.setVisible(true);
-			
+			this.dispose();
 			break;
 			
 case COMMAND_BUTTON2:
@@ -142,6 +131,7 @@ case COMMAND_BUTTON2:
 				vtPartida=new vtPartida(usuario);
 				vtPartida.setVisible(true);
 				vtPartida.startHilos();	
+				this.dispose();
 			}
 			//else
 			{
