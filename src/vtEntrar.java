@@ -40,7 +40,7 @@ public class vtEntrar extends JFrame implements ActionListener
 		getContentPane().add(lblUsuario);
 		
 		JCheckBox chkUsuario = new JCheckBox("Gorde erabiltzailea");
-		chkUsuario.setBounds(5, 48, 97, 14);
+		chkUsuario.setBounds(5, 48, 153, 14);
 		getContentPane().add(chkUsuario);
 		
 		JLabel lblPasahitza = new JLabel("Pasahitza:");
@@ -48,16 +48,16 @@ public class vtEntrar extends JFrame implements ActionListener
 		getContentPane().add(lblPasahitza);
 		
 		JCheckBox chkPassword= new JCheckBox("Gorde pasahitza");
-		chkPassword.setBounds(5, 84, 97, 14);
+		chkPassword.setBounds(5, 84, 140, 14);
 		getContentPane().add(chkPassword);
 		
 		textField = new JTextField();
-		textField.setBounds(175, 25, 115, 20);
+		textField.setBounds(186, 45, 115, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JPasswordField();
-		textField_1.setBounds(175, 65, 115, 20);
+		textField_1.setBounds(186, 81, 115, 20);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		textField_1.setEchoChar('*');

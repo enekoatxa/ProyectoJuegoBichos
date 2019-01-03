@@ -10,6 +10,7 @@ public class clsMain
 						
 						vtPrincipal frame = new vtPrincipal(null);
 						frame.setVisible(true);
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
