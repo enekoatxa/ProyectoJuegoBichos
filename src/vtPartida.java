@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JButton;
 
 
 
@@ -40,7 +41,7 @@ public class vtPartida extends JFrame
 	
 	private int puntuacion;
 	private int tiempogen=1000;
-	private JLabel lblNewLabel;
+	private JButton btnNewButton;
 	
 	public vtPartida(clsUsuario usuario)
 	{
@@ -88,12 +89,7 @@ public class vtPartida extends JFrame
 		lblpntcn.setBounds(140, 0, 97, 46);
 		panel.add(lblpntcn);
 		
-		lblNewLabel = new JLabel("Berriz saiatu");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		lblNewLabel.setBounds(396, 264, 179, 111);
-		panel.add(lblNewLabel);
-		lblNewLabel.setVisible(false);
+
 
 		this.setCursor(this.getToolkit().createCustomCursor(
 	            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
@@ -180,7 +176,7 @@ public class vtPartida extends JFrame
 						int plus=bonuses.get(i).getPremio();
 						lblPlus.setText("+"+plus+"!");
 						puntuacion=puntuacion+bonuses.get(i).getPremio();
-						lblPlus.setBounds(x.intValue(),y.intValue(),100,100);
+						lblPlus.setBounds(x.intValue(),y.intValue(),50,50);
 						borraBonus(bonuses.get(i));
 						actualizarLabelPuntuacion();
 					}
@@ -194,7 +190,7 @@ public class vtPartida extends JFrame
 							Double y=bonuses.get(i).posY;
 							int plus=bonuses.get(i).getPremio();
 							lblPlus.setText(plus+"...");
-							lblPlus.setBounds(x.intValue(),y.intValue(),100,100);
+							lblPlus.setBounds(x.intValue(),y.intValue(),50,50);
 							borraBonus(bonuses.get(i));
 							actualizarLabelPuntuacion();
 
@@ -233,7 +229,7 @@ public class vtPartida extends JFrame
 	public void terminaPartida()
 	{
 		partidaSigue=false;
-		lblNewLabel.setVisible(true);
+		
 	}
 
 	
