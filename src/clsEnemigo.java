@@ -92,8 +92,8 @@ public class clsEnemigo
 	}
 
 	public void mueve( double tiempoDeMovimiento ) {
-		setPosX( posX + motorPartida.calcularXEnemigo(0.04, direccion, velocidad));
-		setPosY( posY + motorPartida.calcularYEnemigo(0.04, direccion, velocidad));
+		setPosX( posX + motorPartida.calcularXEnemigo(tiempoDeMovimiento, direccion, velocidad));
+		setPosY( posY + motorPartida.calcularYEnemigo(tiempoDeMovimiento, direccion, velocidad));
 	}
 	
 }
