@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.PrintStream;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Properties;
 
@@ -71,9 +72,7 @@ public class vtEntrar extends JFrame implements ActionListener
 			public void actionPerformed(ActionEvent e) {
 				inicioSesion();
 				guardarProperties(chkUsuario.isSelected(), chkPassword.isSelected());
-				setVisible (false);
-				dispose ();
-			}
+				}
 	});
 		
 		btnPassword = new JButton("");
@@ -118,20 +117,29 @@ public class vtEntrar extends JFrame implements ActionListener
 	
 	public void inicioSesion()
 	{
-		String usuario= textField.getText();
+		String nombre= textField.getText();
 		String contrasenya = textField_1.getText();
+		boolean existe=false;
 		
-		HashSet usuarios = new HashSet<clsUsuario>();
+		HashSet<clsUsuario> usuarios = new HashSet<clsUsuario>();
 		//falta leer usuarios de base de datos, comparar e intentar entrar
 		
-		//usuarios=gestorBD.leerUsuarios;
-//		for(clsUsuario u: usuarios)
-//		{
-//		if(u.getNombre=nombre && u.getContrasenya)
-//		{
-//			vtPrincipal principal= new vtPrincipal(u);
-//		}	
-//		}
+		try {
+			usuarios=clsBD.leerUsuarios();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		for(clsUsuario u: usuarios)
+		{
+			if(u.getUsuario().equals(nombre) && u.getContrasenya().equals(contrasenya))
+			{
+				vtPrincipal principal= new vtPrincipal(u);
+				existe=true;
+				principal.setVisible(true);
+				dispose();
+			}	
+		}
+		if(existe==false)
 		JOptionPane.showMessageDialog(this, "Ez dago izen eta pasahitz hori dituen erabiltzailerik, saiatu berriro.");
 		
 	}

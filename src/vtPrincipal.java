@@ -126,16 +126,16 @@ case COMMAND_BUTTON2:
 			
 			break;
 		case COMMAND_BUTTON1:
-			//if(usuario!=null)
+			if(usuario!=null)
 			{
 				vtPartida=new vtPartida(usuario);
 				vtPartida.setVisible(true);
 				vtPartida.startHilos();	
 				this.dispose();
 			}
-			//else
+			else
 			{
-			//	JOptionPane.showMessageDialog(this, "Ez duzu erabiltzailea aukeratu");
+				JOptionPane.showMessageDialog(this, "Ez duzu erabiltzailea aukeratu");
 			}
 			break;
 }

@@ -1,9 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.HashSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -68,9 +71,8 @@ public class vtCrear extends JFrame implements ActionListener
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 						
-				setVisible (false);
-				dispose ();
-			}
+				crearUsuario();
+				}
 	});
 		
 		btnPassword = new JButton("");
@@ -147,9 +149,8 @@ public class vtCrear extends JFrame implements ActionListener
 		}
 	}
 	
-	public clsUsuario crearUsuario()
+	public void crearUsuario()
 	{
-		//hashcode ta haslist falta
 		String nombre = null;
 		String contrasenya = null;
 		
@@ -157,11 +158,33 @@ public class vtCrear extends JFrame implements ActionListener
 		if(textField_1.getText().equals(textField_2.getText()) && textField_1.getText()!="")
 		{
 			contrasenya=textField_1.getText();
+			clsUsuario nuevo = new clsUsuario(nombre, contrasenya);
+			HashSet<clsUsuario> usuarios = new HashSet <clsUsuario>();
+			try {
+				usuarios=clsBD.leerUsuarios();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(usuarios.contains(nuevo))
+			{
+				JOptionPane.showMessageDialog(this, "Jada exititzen da erabiltzaile hori.");
+			}
+			else
+			{
+				try {
+					clsBD.escribirUsuario(nuevo);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(this, "Erabiltzailea datu basean sartu da");
+				this.dispose();
+			}
 		}
-		
-		clsUsuario nuevo = new clsUsuario(nombre, contrasenya);
-		
-		return nuevo;
-		
+		else
+		{
+			JOptionPane.showMessageDialog(this, "Pasahitzak ez dira berdinak, saiatu berriro.");	
+		}
+				
 	}
 }

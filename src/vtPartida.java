@@ -5,14 +5,17 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
+
 import javax.swing.JButton;
 
 
@@ -117,7 +120,6 @@ public class vtPartida extends JFrame
 		public void run() 
 		{
 		
-			
 			while(partidaSigue)
 			{
 				puntuacion++;
@@ -136,11 +138,8 @@ public class vtPartida extends JFrame
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			
-				
 			}
-			
-			
+					
 		}
 		
 	}
@@ -243,6 +242,12 @@ public class vtPartida extends JFrame
 	public void terminaPartida()
 	{
 		partidaSigue=false;
+		try {
+			clsBD.escribirPuntuacion(usuario, puntuacion);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		vtFinal ultima = new vtFinal(usuario, puntuacion);
 		ultima.setVisible(true);
 		this.dispose();
