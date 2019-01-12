@@ -1,8 +1,15 @@
 import java.util.Random;
 
 /**
- * clase que tiene los atributos de posición, velocidad, dirección y hora de creación de enemigos.
- * @author ALUMNO
+ * 
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * Clase que sirve de estructura para los enemigos del juego. Estos enemigos tendrán cinco parámetros:
+ *	
+ *	double posX: La posición de la coordenada X en la que se encontrará el enemigo.
+ *	double posY: La posición de la coordenada Y en la que se encontrará el enemigo.
+ *	double velocidad: La velocidad a la que se moverá el enemigo.
+ *	double direccion: La dirección que va a seguir el enemigo.
+ *	long creacion: En este atributo se guarda el momento en el que fue creado el enemigo.
  *
  */
 public class clsEnemigo 

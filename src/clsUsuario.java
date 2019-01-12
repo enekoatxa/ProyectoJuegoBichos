@@ -1,12 +1,25 @@
 import java.util.ArrayList;
 
-
+/**
+ * 
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * 
+ * Clase que sirve de estructura para los usuarios de la aplicación. Contiene tres atributos:
+ * String usuario: Nombre del usuario.
+ * String contrasenya: Contraseña del usuario.
+ * ArrayList<Integer>puntuaciones: ArrayList donde se guardaran las puntuaciones que ha ido obteniendo el usuario a lo largo del tiempo.
+ *
+ */
 public class clsUsuario 
 {
 	private String usuario;
 	private String contrasenya;
 	private ArrayList<Integer>puntuaciones;
-	
+	/**
+	 * Constructor sin parámetros para la clase.
+	 * @param usuario Nombre que va a tener el usuario.
+	 * @param contrasenya Contraseña que va a tener el usuario.
+	 */
 	public clsUsuario(String usuario, String contrasenya)
 	{
 		this.usuario=usuario;

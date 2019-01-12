@@ -2,7 +2,7 @@ import java.awt.EventQueue;
 
 /**
  * Es el main del programa, que genera la primera instancia de vtPrincipal.
- * @author ALUMNO
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
  *
  */
 public class clsMain 

@@ -11,7 +11,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-
+/**
+ * 
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * Clase para la ventana que sirve para crear un usuario, extiende de JFrame y implementa ActionListener.
+ * Esta clase contiene varios atributos que son componentes de Swing; como textField-s o botones.
+ * Por otro lado contiene dos atributos que valen para que el ActionListener pueda distinguir entre componentes.
+ * También cuenta con un booleano que sirve para enseñar o ocultar la contraseña.
+ */
 public class vtCrear extends JFrame implements ActionListener
 {
 	private JTextField textField;
@@ -23,9 +30,9 @@ public class vtCrear extends JFrame implements ActionListener
 	
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
 	private final String PASAHITZAIKUSI1 = "PASAHITZAIKUSI1";
-	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
-	private JLabel lblNewLabel;
-	
+	/**
+	 * Constructor sin parámetros para la creación de la ventana.
+	 */
 	public vtCrear() {
 		
 		setTitle("Erabiltzailea sortu");
@@ -103,7 +110,9 @@ public class vtCrear extends JFrame implements ActionListener
 	
 		
 	}
-	
+	/**
+	 * Método para gestionar las pulsaciones a los botones de la ventana mediante el Listener.
+	 */
 	public void actionPerformed(ActionEvent e) 
 	{
 		String comando=e.getActionCommand();
@@ -148,7 +157,9 @@ public class vtCrear extends JFrame implements ActionListener
 		break;
 		}
 	}
-	
+	/**
+	 * Método para crear el usuario y guardarlo en la base de datos.
+	 */
 	public void crearUsuario()
 	{
 		String nombre = null;
