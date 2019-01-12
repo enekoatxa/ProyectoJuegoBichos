@@ -1,5 +1,10 @@
 import java.util.Random;
 
+/**
+ * clase que tiene los atributos de posición, velocidad, dirección y hora de creación de enemigos.
+ * @author ALUMNO
+ *
+ */
 public class clsEnemigo 
 {
 	protected static final int ENEMIGO_TAMANYO = 50;
@@ -9,6 +14,10 @@ public class clsEnemigo
 	protected double direccion;
 	protected long creacion;
 	
+	/**
+	 * Constructor de clsEnemigo. Crea un enemigo aleatoriamente en una de las cuatro esquinas de la pantalla, y después de elegir una esquina, genera una 
+	 * posición inicial y una velocidad y dirección aleatorias.
+	 */
 	public clsEnemigo()
 	{
 		Random r = new Random();
@@ -91,6 +100,11 @@ public class clsEnemigo
 		this.creacion = creacion;
 	}
 
+	/**
+	 * Mediante dos llamadas a motorPartida, que calcula las posiciones según la dirección y velocidad de un enemigo, después de ese calculo, los
+	 * mueve físicamente en la pantalla.
+	 * @param tiempoDeMovimiento Es el tiempo que se utiliza para calcular el movimiento.
+	 */
 	public void mueve( double tiempoDeMovimiento ) {
 		setPosX( posX + motorPartida.calcularXEnemigo(tiempoDeMovimiento, direccion, velocidad));
 		setPosY( posY + motorPartida.calcularYEnemigo(tiempoDeMovimiento, direccion, velocidad));
