@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -120,7 +121,12 @@ public class vtPrincipal extends JFrame implements ActionListener
 			
 case COMMAND_BUTTON2:
 			
-			vtp=new vtMejoresPuntuaciones();
+			try {
+				vtp=new vtMejoresPuntuaciones();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			vtp.setVisible(true);
 			
 			

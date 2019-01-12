@@ -33,6 +33,7 @@ public class vtEntrar extends JFrame implements ActionListener
 		setTitle("Sartu");
 		getContentPane().setLayout(null);
 		
+		
 		setSize(387,180);
 		pasahitza=false;
 		
@@ -76,7 +77,7 @@ public class vtEntrar extends JFrame implements ActionListener
 	});
 		
 		btnPassword = new JButton("");
-		btnPassword.setBounds(300, 63, 24, 24);
+		btnPassword.setBounds(300, 75, 24, 24);
 		getContentPane().add(btnPassword);
 		btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 		btnPassword.setActionCommand(PASAHITZAIKUSI);
