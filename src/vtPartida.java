@@ -257,8 +257,11 @@ public class vtPartida extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		
 		logger.log( Level.INFO, "Partida bukatu da." );
+=======
+>>>>>>> 6d892b419b695a55b1ac1fd9a59d73e8b394aaf3
 		vtFinal ultima = new vtFinal(usuario, puntuacion);
 		ultima.setVisible(true);
 		this.dispose();
