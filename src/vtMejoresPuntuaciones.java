@@ -51,16 +51,32 @@ public class vtMejoresPuntuaciones extends JFrame
 		//+ ordenatu haundienetik txikienera
 		
 		
-//		ArrayList usuariosConPuntuaciones =clsBD.leerPuntuaciones();
-//		
-//			for (int i = 0; i < usuariosConPuntuaciones.size(); ++i) {
-//			  
-//				
-//			}
+		ArrayList usuariosConPuntuaciones = new ArrayList<clsUsuario>();
+		usuariosConPuntuaciones = clsBD.leerPuntuaciones();
 		
-		modelo.addElement("MIKEL MARTINEZ " + "........" + "100" );
-		modelo.addElement("IMANOL AIZPURU" + ".........."+ "60");
-		modelo.addElement("ENEKO ATXA" + " .................."+ "0");
+	//HACER ARRAYLIST DE INTS CON TDOS LOS MEJORES NUMEROS
+		
+		for (int i = 0; i < usuariosConPuntuaciones.size(); ++i) 
+		{
+			ArrayList puntuaciones = new ArrayList<>();
+			puntuaciones= ((clsUsuario) usuariosConPuntuaciones.get(i)).getPuntuaciones();
+			int puntuacionMasAlta=0;
+			int aux=0;
+			for (int x = 0; x < puntuaciones.size(); ++x) 
+			{
+				aux=(int) puntuaciones.get(x);
+				
+			if(aux>puntuacionMasAlta)
+			{
+				puntuacionMasAlta= (int) puntuaciones.get(x);
+			}
+			}
+			modelo.addElement(((clsUsuario) usuariosConPuntuaciones.get(i)).getUsuario().toUpperCase(getLocale()) + 		
+					"                                              "+
+					puntuacionMasAlta);
+		}
+		
+	
 		
 		list.setFont(new Font("Times New Roman",Font.BOLD,15));
 	
@@ -102,5 +118,8 @@ public class vtMejoresPuntuaciones extends JFrame
 				dispose ();
 			}
 	});
+		JButton btnNewButton2 = new JButton("Estadistikak");
+		btnNewButton2.setBounds(320, 10, 110, 20);
+		contentPane.add(btnNewButton2);
 	}
 }

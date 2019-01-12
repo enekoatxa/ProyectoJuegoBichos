@@ -24,17 +24,7 @@ public class clsBD {
 		}
 	}
 	
-	//hay que enseñar puntuaciones (todas ) o si no quedarnos siempre con la mas alta y enseñar la puntuacion mas alta
-	
-//	public static void insertNuevo( String Usuario, int puntuacion ) {
-//		String sent = "insert into interaccion values(" + Usuario + "Puntuacion de " + puntuacion ;
-//		try {
-//			statement.executeUpdate(sent);
-//		} catch (SQLException e) {
-//			System.out.println( "ERROR EN SENTENCIA SQL: " + sent);
-//			e.printStackTrace();
-//		}
-//	}
+
 	
 	public static void escribirUsuario(clsUsuario usuario) throws SQLException
 	{
@@ -98,6 +88,7 @@ public class clsBD {
 				{
 					usuariosConPuntuaciones.get(i).getPuntuaciones().add(puntuacion);
 					existe=true;
+				
 				}
 			}
 			if(existe==false)
