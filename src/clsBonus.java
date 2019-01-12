@@ -2,16 +2,25 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Random;
-
+/**
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ *	Clase que sirve de estructura para los bonus del juego. Estos bonuses tendrán cuatro parámetros:
+ *	int premio: La puntuación que tendrá este bonus (aleatorio).
+ *	double posX: La posición de la coordenada X en la que se encontrará el bonus (aleatorio).
+ *	double posY: La posición de la coordenada Y en la que se encontrará el bonus (aleatorio).
+ *	long creacion: En este atributo se guarda el momento en el que fue creado el bonus.
+ */
 public class clsBonus
-{
-	protected int bonus; //Determina el tipo de bonus que será, de puntuación o de tiempo.
+{ 
 	protected int premio;
 	protected double posX;
 	protected double posY;
 	protected long creacion;
 	
-public clsBonus() //Constructor sin parámetros(solo 1 parámetro que utilizaremos para decidir la clase de bonus que será entre los dos que hemos definido. )
+	/**
+	 * Constructor sin parámetros para la clase. Crea un bonus aleatoriamente en cualquier posición de la pantalla y con el premio aleatorio entre cinco posibles.
+	 */
+public clsBonus() 
 {
 	creacion=System.currentTimeMillis();
 	bonuspuntuacion(); //Le da una puntuación aleatoria entre 5 puntuaciones a nuestro bonus.
@@ -20,6 +29,9 @@ public clsBonus() //Constructor sin parámetros(solo 1 parámetro que utilizaremos
 	
 	
 }
+/**
+ * Método para calcular la posición del bonus de forma aleatoria
+ */
 private void posicion()
 {
 	Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize(); 
@@ -29,6 +41,9 @@ private void posicion()
 	posX=pantallaTamano.getWidth()*rand.nextDouble();
 	posY=pantallaTamano.getHeight()*rand.nextDouble();
 }
+/**
+ * Método para calcular la puntuación de un bonus de forma aleatoria entre cinco valores: 10, 20 , 30, 40 o 50.
+ */
 private void bonuspuntuacion()
 {
 	Random rand = new Random();
@@ -48,14 +63,6 @@ private void bonuspuntuacion()
 	case 5:premio=50;
 		break;
 	}
-}
-
-public int getBonus() {
-	return bonus;
-}
-
-public void setBonus(int bonus) {
-	this.bonus = bonus;
 }
 
 public int getPremio() {

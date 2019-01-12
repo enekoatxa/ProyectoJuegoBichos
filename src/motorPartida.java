@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 /**
  * Esta clase es el motor que se utiliza para llevar a cabo las diferentes funciones que se necesitan en la partida. Como atributo tiene un JPanel, un clsEnemigoJuego,
  * un clsBichoJuego, un clsBonusJuego, un lblBonus, un lblPuntuacion y otros atributos para el calculo de la dirección del label del jugador.
- * @author ALUMNO
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
  *
  */
 public class motorPartida 

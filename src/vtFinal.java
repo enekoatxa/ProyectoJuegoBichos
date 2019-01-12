@@ -14,13 +14,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
+/**
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * Clase para la ventana que sirve para enseñarnos la puntuación cuando hemos acabado la partida, extiende de JFrame y implementa ActionListener. Nos da la opción de reintentar o salir.
+ * Esta clase contiene unos componentes de Swing; como lo son dos botones y un label.
+ *
+ */
 public class vtFinal extends JFrame implements ActionListener
 {
 	private BufferedImage image;
 	private JPanel contentPane;
 	private clsUsuario usuario;
-	
+	/**
+	 * Constructor con dos parámetros (usuario que ha jugado, la puntuación que ha logrado) de la ventana.
+	 * @param usuario
+	 * @param puntuacion
+	 */
 	public vtFinal(clsUsuario usuario, int puntuacion)
 	{
 		this.usuario=usuario;
@@ -76,7 +85,9 @@ public class vtFinal extends JFrame implements ActionListener
 		contentPane.add(btnMenu);
 		contentPane.add(btnReintentar);
 	}
-	
+	/**
+	 * Método para gestionar las pulsaciones a los botones de la ventana mediante el Listener.
+	 */
 	public void actionPerformed(ActionEvent e) 
 	{
 		String com=e.getActionCommand();
