@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -23,6 +25,9 @@ import javax.swing.JButton;
 
 public class vtPartida extends JFrame
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	
+	
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
@@ -50,6 +55,8 @@ public class vtPartida extends JFrame
 	{
 		this.usuario=usuario;
 		puntuacion=0;
+	
+		logger.log( Level.INFO, "Partida hasi da." );
 		
 		try {                
 	          image = ImageIO.read(new File(".\\src\\Imagenes\\FondoJuego1.jpg"));
@@ -173,6 +180,8 @@ public class vtPartida extends JFrame
 						int plus=bonuses.get(i).getPremio();
 						lblPlus.setText("+"+plus+"!");
 						puntuacion=puntuacion+bonuses.get(i).getPremio();
+						logger.log( Level.INFO, "+ "+plus+" puntu." );
+
 						if((x.intValue()>pantallaTamano.width-100)&&(y.intValue()>pantallaTamano.height-100))
 						{
 							lblPlus.setBounds(pantallaTamano.width-200,pantallaTamano.height-100,100,100);
@@ -248,6 +257,11 @@ public class vtPartida extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
+		
+		logger.log( Level.INFO, "Partida bukatu da." );
+=======
+>>>>>>> 6d892b419b695a55b1ac1fd9a59d73e8b394aaf3
 		vtFinal ultima = new vtFinal(usuario, puntuacion);
 		ultima.setVisible(true);
 		this.dispose();

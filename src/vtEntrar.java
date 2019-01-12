@@ -28,6 +28,7 @@ public class vtEntrar extends JFrame implements ActionListener
 	private Properties props = null;
 	
 	public vtEntrar() 
+
 	{
 	
 		setTitle("Sartu");

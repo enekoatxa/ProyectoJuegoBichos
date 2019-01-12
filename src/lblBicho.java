@@ -14,11 +14,17 @@ public class lblBicho extends JLabel
 	private double giro=0;
 	
 	private static final long serialVersionUID = 1L;
-	
+	int cont=0;
 	public lblBicho()
 	{
+		
 		try {
+			
 			setIcon( new ImageIcon( lblBicho.class.getResource( "Imagenes/Mantangorria.png" ).toURI().toURL() ) );
+			
+			
+			
+			
 		} catch (Exception e) {
 			System.err.println( "Error en carga de recurso: bicho.png no encontrado" );
 			e.printStackTrace();

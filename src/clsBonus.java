@@ -39,13 +39,13 @@ private void bonuspuntuacion()
 	{
 	case 1:premio=10;
 		break;
-	case 2:premio=25;
+	case 2:premio=20;
 		break;
-	case 3:premio=50;
+	case 3:premio=30;
 		break;
-	case 4:premio=100;
+	case 4:premio=40;
 		break;
-	case 5:premio=200;
+	case 5:premio=50;
 		break;
 	}
 }
