@@ -26,6 +26,11 @@ public class motorPartida
 		panel.setVisible(true);		
 	}
 	
+	//Constructor vacio para test de JUnit
+	public motorPartida() {
+		
+	}
+
 	public clsEnemigoJuego creaEnemigo()
 	{
 		enemigo = new clsEnemigoJuego();
@@ -40,6 +45,13 @@ public class motorPartida
 		bicho = new clsBichoJuego(posXActual, posYActual);
 		panel.add(bicho.getGrafico());
 		bicho.getGrafico().repaint();
+		return bicho;
+	}
+	
+	//metodo para usar en un test de JUnit, que no dispone de un JPanel.
+	public clsBichoJuego crearBichoTest()
+	{
+		bicho = new clsBichoJuego(posXActual, posYActual);
 		return bicho;
 	}
 	
@@ -101,7 +113,7 @@ public class motorPartida
 	
 	public void calculaPosicionEnemigo(clsEnemigoJuego enemigo)
 	{
-		enemigo.mueve(25);
+		enemigo.mueve(0.025);
 		enemigo.getGrafico().repaint();
 	}
 	
