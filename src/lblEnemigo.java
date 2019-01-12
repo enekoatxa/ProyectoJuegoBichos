@@ -7,13 +7,25 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/**
+ * 
+ *  * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * 
+ * Clase como estructura para el label del enemigo. Contiene tres atributos:
+ * int ENEMIGO_TAMANYO: El tamaño que va a tener el label, siempre va a ser de 100 pixels.
+ * int ENEMIGO_RADIO=: Atributo para gestionar los choques con el bicho.
+ * double miGiro: Atributo para que el enemigo tenga un giro.
+ *
+ */
 public class lblEnemigo extends JLabel
 {
 	private static final long serialVersionUID = 1L;
 	public static final int ENEMIGO_TAMANYO = 100; 
 	public static final int ENEMIGO_RADIO= 15;
 	private double giro=0;
-	
+	/**
+	 * Constructor sin parámetros para el label. Pone la imagen correspondiente al label y también le adjudica al label su tamaño(ENEMIGO_TAMANYO).
+	 */
 	public lblEnemigo()
 	{
 		Random r = new Random();

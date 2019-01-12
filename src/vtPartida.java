@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -19,10 +21,23 @@ import java.awt.Color;
 import javax.swing.JButton;
 
 
-
-
+/**
+ * 
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * 
+ * Clase de estructura para la ventana donde se va a ejecutar nuestro juego.
+ * Varios atributos:
+ * Logger logger: Sirve para enseñar en consola la información que queramos.
+ * motorPartida motor: La instancia a motorPartida que vamos a utilizar para gestionar nuestro bicho, enemigos y bonuses.
+ * ArrayList<clsEnemigoJuego>enemigos: ArrayList donde se guardaran todos los enemigos en juego en cada momento.
+ * ArrayList<clsBonusJuego>bonuses: ArrayList donde se guardaran todos los bonuses en juego en cada momento.
+ * clsBichoJuego bicho: Atributo para gestionar el bicho.
+ * int o: Atributo para gestionar el label del plus de puntuación que nos da un bonus.
+ * int puntuacion: La puntuación que lleva el jugador en cada momento.
+ */
 public class vtPartida extends JFrame
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
@@ -45,11 +60,16 @@ public class vtPartida extends JFrame
 	private int puntuacion;
 	private int tiempogen=1000;
 	private JButton btnNewButton;
-	
+	/**
+	 * Constructor de la clase con el usuario que juega de parámetro. Crea una ventana con el principio del juego(un fondo y un bicho). 
+	 * @param usuario
+	 */
 	public vtPartida(clsUsuario usuario)
 	{
 		this.usuario=usuario;
 		puntuacion=0;
+	
+		logger.log( Level.INFO, "Partida hasi da." );
 		
 		try {                
 	          image = ImageIO.read(new File(".\\src\\Imagenes\\FondoJuego1.jpg"));
@@ -97,7 +117,9 @@ public class vtPartida extends JFrame
 	            "null"));
 	}
 	
-	
+	/**
+	 * Método para dar comienzo a los dos hilos que utilizaremos en esta clase.
+	 */
 	public void startHilos()
 	{
 		spawner = new hiloCreador();
@@ -109,7 +131,12 @@ public class vtPartida extends JFrame
 		hiloPosi.start();
 				
 	}
-		
+		/**
+		 * 
+		 * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+		 * Este hilo irá creando enemigos y bonuses(1 cada 10 enemigos) de manera continuada mientras el juego no se termine.
+		 * Además va actualizando la puntuación.
+		 */
 	class hiloCreador implements Runnable
 	{
 		//Sleep de unos segundos o un sleep variable segun avance la partida?
@@ -143,7 +170,12 @@ public class vtPartida extends JFrame
 		}
 		
 	}
-	
+	/**
+	 * 
+	 * @author  Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+	 * Método para gestionar los choques del bicho con los enemigos o los bonuses.
+	 * Además de ello aumenta la puntuación, la actualiza,... Y enseña la puntuación de cada bonus cuando este es cogido o desaparecido(después de 5 segundos desde cuando fue creado).
+	 */
 	class hiloCalculadorPosiciones implements Runnable
 	{
 		//Sleep de 25 milisegundos
@@ -173,6 +205,8 @@ public class vtPartida extends JFrame
 						int plus=bonuses.get(i).getPremio();
 						lblPlus.setText("+"+plus+"!");
 						puntuacion=puntuacion+bonuses.get(i).getPremio();
+						logger.log( Level.INFO, "+ "+plus+" puntu." );
+
 						if((x.intValue()>pantallaTamano.width-100)&&(y.intValue()>pantallaTamano.height-100))
 						{
 							lblPlus.setBounds(pantallaTamano.width-200,pantallaTamano.height-100,100,100);
@@ -238,7 +272,9 @@ public class vtPartida extends JFrame
 
 		}		
 	}
-		
+		/**
+		 * Método para terminar la partida cuando el bicho choca contra un enemigo. Guarda en la base de datos la puntuación lograda por el usuario.
+		 */
 	public void terminaPartida()
 	{
 		partidaSigue=false;
@@ -248,16 +284,23 @@ public class vtPartida extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		logger.log( Level.INFO, "Partida bukatu da." );
 		vtFinal ultima = new vtFinal(usuario, puntuacion);
 		ultima.setVisible(true);
 		this.dispose();
 	}
+	/**
+	 * Método para boorar un enemigo de la pantalla
+	 * @param e Enemigo a borrar
+	 */
 	public void borraEnemigo(clsEnemigoJuego e)
 	{
 		enemigos.remove(e);
 		motor.borraEnemigoPantalla(e);
 	}
-	
+	/**
+	 * Método para borrar todos los enemigos
+	 */
 	public void borrarEnemigos()
 	{
 		for(int i =0; i<enemigos.size();i++)
@@ -266,12 +309,18 @@ public class vtPartida extends JFrame
 			motor.borraEnemigoPantalla(enemigos.get(i));
 		}
 	}
+	/**
+	 * Método para boorar un bonus de la pantalla
+	 * @param e Bonus a borrar
+	 */
 	public void borraBonus(clsBonusJuego b)
 	{
 		bonuses.remove(b);
 		motor.borraBonusPantalla(b);
 	}
-	
+	/**
+	 * Método para borrar todos los bonuses
+	 */
 	public void borrarBonuses()
 	{
 		for(int i =0; i<bonuses.size();i++)
@@ -280,7 +329,9 @@ public class vtPartida extends JFrame
 			motor.borraBonusPantalla(bonuses.get(i));
 		}
 	}
-	
+	/**
+	 * Método para actualizar el label que nos enseña la puntuación.
+	 */
 	private void actualizarLabelPuntuacion() 
 	{
 		lblpntcn.setText(" " +puntuacion);

@@ -15,7 +15,15 @@ import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 
-
+/**
+ * 
+ *  @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * Clase para la ventana que sirve para entrar con un usuario, extiende de JFrame y implementa ActionListener.
+ * Esta clase contiene varios atributos que son componentes de Swing; como textField-s o botones.
+ * Por otro lado contiene dos atributos que valen para que el ActionListener pueda distinguir entre componentes.
+ * También cuenta con un booleano que sirve para enseñar o ocultar la contraseña.
+ *
+ */
 public class vtEntrar extends JFrame implements ActionListener
 {
 	private JTextField textField;
@@ -26,8 +34,11 @@ public class vtEntrar extends JFrame implements ActionListener
 	private final String PASAHITZAIKUSI = "PASAHITZAIKUSI";
 	private final String COMMAND_BUTTON1 = "COMMAND_BUTTON1";
 	private Properties props = null;
-	
+	/**
+	 * Constructor sin parámetros para la creación de la ventana.
+	 */
 	public vtEntrar() 
+
 	{
 	
 		setTitle("Sartu");
@@ -84,6 +95,9 @@ public class vtEntrar extends JFrame implements ActionListener
 		btnPassword.addActionListener(this);
 
 	}
+	/**
+	 * Método para gestionar las pulsaciones a los botones de la ventana mediante el Listener.
+	 */
 	public void actionPerformed(ActionEvent e) 
 	{
 		String comando=e.getActionCommand();
@@ -115,7 +129,9 @@ public class vtEntrar extends JFrame implements ActionListener
 			break;
 		}
 	}
-	
+	/**
+	 * Método para entrar en el usuario correspondiente, mediante la lectura en la base de datos.
+	 */
 	public void inicioSesion()
 	{
 		String nombre= textField.getText();

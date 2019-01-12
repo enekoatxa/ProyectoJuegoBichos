@@ -10,19 +10,28 @@ import javax.swing.JLabel;
 //import com.sun.prism.Graphics;
 import java.awt.Graphics;
 
-
+/**
+ * 
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * 
+ * Clase como estructura para el label del bonus. Contiene tres atributos:
+ * int BONUS_TAMANYO: El tamaño que va a tener el label, siempre va a ser de 50 pixels.
+ * int RADIO_ESFERA_BONUS: Atributo para gestionar los choques con el bicho.
+ * double miGiro: Atributo para ir girando los bonuses.
+ */
 public class lblBonus extends JLabel //Bonus Puntuacion
 {
 	private static final long serialVersionUID = 1L;
 	public static final int BONUS_TAMANYO = 50; 
 	public static final int RADIO_ESFERA_BONUS = 23; 
 	private double miGiro = 0;
-
-	public lblBonus(int bonus)
+	/**
+	 * Constructor sin parámetros para el label. Pone la imagen de la margarita al label y también le adjudica al label su tamaño(BONUS_TAMANYO).
+	 */
+	public lblBonus()
 
 	{
-		if(bonus==0)
-		{
+		
 			try
 			{
 				this.setIcon( new ImageIcon( lblBonus.class.getResource( "Imagenes/margarita.png" ).toURI().toURL() ) );
@@ -31,20 +40,13 @@ public class lblBonus extends JLabel //Bonus Puntuacion
 			{
 				System.out.println("Error: label de bonus no encontrado");
 			}
-		}
-		else
-		{
-			try
-			{
-				this.setIcon( new ImageIcon( lblBonus.class.getResource( "hemen bonus denbora" ).toURI().toURL() ) );
-			}
-			catch(Exception e)
-			{
-				System.out.println("Error: label de bonus no encontrado");
-			}
-		}
+		
 		this.setBounds(0, 0, BONUS_TAMANYO, BONUS_TAMANYO);
 	}
+	/**
+	 * Método para ir girando el bonus.
+	 * @param gradosGiro
+	 */
 	public void addGiro( double gradosGiro ) {
 		miGiro -= gradosGiro/180*Math.PI;
 	}

@@ -1,5 +1,17 @@
 import java.util.Random;
 
+/**
+ * 
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * Clase que sirve de estructura para los enemigos del juego. Estos enemigos tendrán cinco parámetros:
+ *	
+ *	double posX: La posición de la coordenada X en la que se encontrará el enemigo.
+ *	double posY: La posición de la coordenada Y en la que se encontrará el enemigo.
+ *	double velocidad: La velocidad a la que se moverá el enemigo.
+ *	double direccion: La dirección que va a seguir el enemigo.
+ *	long creacion: En este atributo se guarda el momento en el que fue creado el enemigo.
+ *
+ */
 public class clsEnemigo 
 {
 	protected static final int ENEMIGO_TAMANYO = 50;
@@ -9,6 +21,10 @@ public class clsEnemigo
 	protected double direccion;
 	protected long creacion;
 	
+	/**
+	 * Constructor de clsEnemigo. Crea un enemigo aleatoriamente en una de las cuatro esquinas de la pantalla, y después de elegir una esquina, genera una 
+	 * posición inicial y una velocidad y dirección aleatorias.
+	 */
 	public clsEnemigo()
 	{
 		Random r = new Random();
@@ -91,6 +107,11 @@ public class clsEnemigo
 		this.creacion = creacion;
 	}
 
+	/**
+	 * Mediante dos llamadas a motorPartida, que calcula las posiciones según la dirección y velocidad de un enemigo, después de ese calculo, los
+	 * mueve físicamente en la pantalla.
+	 * @param tiempoDeMovimiento Es el tiempo que se utiliza para calcular el movimiento.
+	 */
 	public void mueve( double tiempoDeMovimiento ) {
 		setPosX( posX + motorPartida.calcularXEnemigo(tiempoDeMovimiento, direccion, velocidad));
 		setPosY( posY + motorPartida.calcularYEnemigo(tiempoDeMovimiento, direccion, velocidad));
