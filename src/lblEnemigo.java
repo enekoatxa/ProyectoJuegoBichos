@@ -19,7 +19,7 @@ import javax.swing.JLabel;
  * int ENEMIGO_TAMANYO: El tamaño que va a tener el label, siempre va a ser de 100 pixels.
  * int ENEMIGO_RADIO=: Atributo para gestionar los choques con el bicho.
  * double miGiro: Atributo para que el enemigo tenga un giro.
- *
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  */
 public class lblEnemigo extends JLabel
 {

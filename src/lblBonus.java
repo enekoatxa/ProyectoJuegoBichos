@@ -23,6 +23,7 @@ import java.util.logging.Logger;
  * int BONUS_TAMANYO: El tamaño que va a tener el label, siempre va a ser de 50 pixels.
  * int RADIO_ESFERA_BONUS: Atributo para gestionar los choques con el bicho.
  * double miGiro: Atributo para ir girando los bonuses.
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  */
 public class lblBonus extends JLabel //Bonus Puntuacion
 {

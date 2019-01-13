@@ -29,7 +29,7 @@ import javax.swing.JButton;
  * 
  * Clase de estructura para la ventana donde se va a ejecutar nuestro juego.
  * Varios atributos:
- * Logger logger: Sirve para enseñar en consola la información que queramos.
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  * motorPartida motor: La instancia a motorPartida que vamos a utilizar para gestionar nuestro bicho, enemigos y bonuses.
  * ArrayList<clsEnemigoJuego>enemigos: ArrayList donde se guardaran todos los enemigos en juego en cada momento.
  * ArrayList<clsBonusJuego>bonuses: ArrayList donde se guardaran todos los bonuses en juego en cada momento.
