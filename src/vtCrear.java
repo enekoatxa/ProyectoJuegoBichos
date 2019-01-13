@@ -25,6 +25,7 @@ public class vtCrear extends JFrame implements ActionListener
 	private JPasswordField textField_1;
 	private JPasswordField textField_2;
 	private boolean pasahitza;
+	private boolean pasahitza1;
 	private JButton btnPassword;
 	private JButton btnPassword1;
 	
@@ -91,7 +92,7 @@ public class vtCrear extends JFrame implements ActionListener
 		
 		btnPassword1 = new JButton("");
 		btnPassword1.addActionListener(this);
-		btnPassword1.setActionCommand("PASAHITZAIKUSI1");
+		btnPassword1.setActionCommand(PASAHITZAIKUSI1);
 		btnPassword1.setBounds(317, 104, 24, 24);
 		getContentPane().add(btnPassword1);
 		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
@@ -134,21 +135,21 @@ public class vtCrear extends JFrame implements ActionListener
 				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
 				
 			}
-			
+			break;
 
 	
 		case PASAHITZAIKUSI1:
-			if(pasahitza)
+			if(pasahitza1)
 			{
 				textField_2.setEchoChar('*'); 
-				pasahitza=false;
+				pasahitza1=false;
 				btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 
 			}
 			else
 			{
 				textField_2.setEchoChar((char) 0); 
-				pasahitza=true;
+				pasahitza1=true;
 				btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
 				
 			}

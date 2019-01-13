@@ -78,12 +78,25 @@ public class vtEntrar extends JFrame implements ActionListener
 		JButton btnNewButton = new JButton("Sartu");
 		btnNewButton.setBounds(128, 108, 89, 23);
 		getContentPane().add(btnNewButton);
+		
+		JButton btnAtras = new JButton("Atzera");
+		btnAtras.setBounds(218, 108, 89, 23);
+		getContentPane().add(btnAtras);
+		
 		cargarProperties();
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				inicioSesion();
 				guardarProperties(chkUsuario.isSelected(), chkPassword.isSelected());
+				}
+	});
+		
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vtPrincipal principal= new vtPrincipal(null);
+				principal.setVisible(true);
+				dispose();
 				}
 	});
 		
@@ -123,10 +136,6 @@ public class vtEntrar extends JFrame implements ActionListener
 
 			break;
 	
-		case COMMAND_BUTTON1:
-			
-		
-			break;
 		}
 	}
 	/**
