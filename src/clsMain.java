@@ -33,9 +33,9 @@ public class clsMain
 		EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
+
 						
-						
-						
+				
 						vtPrincipal frame = new vtPrincipal(null);
 						frame.setVisible(true);
 						
