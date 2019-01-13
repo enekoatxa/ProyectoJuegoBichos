@@ -2,7 +2,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,10 +19,11 @@ import javax.swing.JLabel;
  * int ENEMIGO_TAMANYO: El tamaño que va a tener el label, siempre va a ser de 100 pixels.
  * int ENEMIGO_RADIO=: Atributo para gestionar los choques con el bicho.
  * double miGiro: Atributo para que el enemigo tenga un giro.
- *
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  */
 public class lblEnemigo extends JLabel
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
 	private static final long serialVersionUID = 1L;
 	public static final int ENEMIGO_TAMANYO = 100; 
 	public static final int ENEMIGO_RADIO= 15;
@@ -49,7 +54,7 @@ public class lblEnemigo extends JLabel
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error: label de enemigo no encontrado");
+			logger.log(Level.WARNING,"Aurkakoen argazkia kargatzean arazoak.");
 		}
 		this.setBounds(0, 0, ENEMIGO_TAMANYO, ENEMIGO_TAMANYO);
 	}

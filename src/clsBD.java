@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -5,6 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
@@ -13,7 +17,7 @@ import java.util.HashSet;
  * que han realizado en diferentes momentos.
  */
 public class clsBD {
-
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
 	private static Connection connection;
 	private static Statement statement;
 	public static void conexion() 
@@ -25,7 +29,7 @@ public class clsBD {
 			statement.executeUpdate("create table if not exists puntuaciones (nombre string, puntuacion int(6))");
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING,"Datu basea sortzean arazoak");
 		}
 	}
 	

@@ -1,7 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,13 +22,17 @@ import javax.swing.JButton;
  * Esta clase contiene varios atributos que son componentes de Swing; como textField-s o botones.
  * Por otro lado contiene dos atributos que valen para que el ActionListener pueda distinguir entre componentes.
  * También cuenta con un booleano que sirve para enseñar o ocultar la contraseña.
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  */
 public class vtCrear extends JFrame implements ActionListener
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	
 	private JTextField textField;
 	private JPasswordField textField_1;
 	private JPasswordField textField_2;
 	private boolean pasahitza;
+	private boolean pasahitza1;
 	private JButton btnPassword;
 	private JButton btnPassword1;
 	
@@ -91,7 +99,7 @@ public class vtCrear extends JFrame implements ActionListener
 		
 		btnPassword1 = new JButton("");
 		btnPassword1.addActionListener(this);
-		btnPassword1.setActionCommand("PASAHITZAIKUSI1");
+		btnPassword1.setActionCommand(PASAHITZAIKUSI1);
 		btnPassword1.setBounds(317, 104, 24, 24);
 		getContentPane().add(btnPassword1);
 		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
@@ -134,21 +142,21 @@ public class vtCrear extends JFrame implements ActionListener
 				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
 				
 			}
-			
+			break;
 
 	
 		case PASAHITZAIKUSI1:
-			if(pasahitza)
+			if(pasahitza1)
 			{
 				textField_2.setEchoChar('*'); 
-				pasahitza=false;
+				pasahitza1=false;
 				btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 
 			}
 			else
 			{
 				textField_2.setEchoChar((char) 0); 
-				pasahitza=true;
+				pasahitza1=true;
 				btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia2.png")));
 				
 			}
@@ -175,7 +183,7 @@ public class vtCrear extends JFrame implements ActionListener
 				usuarios=clsBD.leerUsuarios();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				logger.log(Level.WARNING,"Datu basea irakurtzean arazoak.");
 			}
 			if(usuarios.contains(nuevo))
 			{
@@ -186,7 +194,7 @@ public class vtCrear extends JFrame implements ActionListener
 				try {
 					clsBD.escribirUsuario(nuevo);
 				} catch (SQLException e) {
-					e.printStackTrace();
+					logger.log(Level.WARNING,"Datu basean idaztean arazoak.");
 				}
 				JOptionPane.showMessageDialog(this, "Erabiltzailea datu basean sartu da");
 				this.dispose();

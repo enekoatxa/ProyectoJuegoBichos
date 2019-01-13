@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,7 @@ import javax.swing.JButton;
  * 
  * Clase de estructura para la ventana donde se va a ejecutar nuestro juego.
  * Varios atributos:
- * Logger logger: Sirve para enseñar en consola la información que queramos.
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  * motorPartida motor: La instancia a motorPartida que vamos a utilizar para gestionar nuestro bicho, enemigos y bonuses.
  * ArrayList<clsEnemigoJuego>enemigos: ArrayList donde se guardaran todos los enemigos en juego en cada momento.
  * ArrayList<clsBonusJuego>bonuses: ArrayList donde se guardaran todos los bonuses en juego en cada momento.
@@ -38,7 +39,7 @@ import javax.swing.JButton;
  */
 public class vtPartida extends JFrame
 {
-	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	private static Logger logger = Logger.getLogger( clsMain.class.getName() );
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();
@@ -60,7 +61,6 @@ public class vtPartida extends JFrame
 	
 	private int puntuacion;
 	private int tiempogen=1000;
-	private JButton btnNewButton;
 	/**
 	 * Constructor de la clase con el usuario que juega de parámetro. Crea una ventana con el principio del juego(un fondo y un bicho). 
 	 * @param usuario
@@ -72,12 +72,11 @@ public class vtPartida extends JFrame
 		puntuacion=0;
 	
 		logger.log( Level.INFO, "Partida hasi da." );
-		
 		try {                
 	          image = ImageIO.read(new File(".\\src\\Imagenes\\FondoJuego1.jpg"));
 	          
 	       } catch (IOException ex) {
-	            
+	    	   logger.log( Level.WARNING, "Fondoaren kargan arazoak");
 	       }
 		//Creación de los dos hilos
 		panel = new JPanel(){
@@ -169,7 +168,7 @@ public class vtPartida extends JFrame
 					Thread.sleep(tiempogen);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					 logger.log( Level.WARNING, e.getMessage());
 				}
 			}
 					
@@ -270,7 +269,7 @@ public class vtPartida extends JFrame
 					Thread.sleep(25);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					 logger.log( Level.WARNING, e.getMessage());
 				}
 				
 
@@ -288,7 +287,7 @@ public class vtPartida extends JFrame
 			clsBD.escribirPuntuacion(usuario, puntuacion);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 logger.log( Level.WARNING, e.getMessage());
 		}
 		logger.log( Level.INFO, "Partida bukatu da." );
 		vtFinal ultima = new vtFinal(usuario, puntuacion);

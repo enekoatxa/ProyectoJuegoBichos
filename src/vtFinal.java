@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -18,10 +21,12 @@ import javax.swing.border.EmptyBorder;
  * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
  * Clase para la ventana que sirve para enseñarnos la puntuación cuando hemos acabado la partida, extiende de JFrame y implementa ActionListener. Nos da la opción de reintentar o salir.
  * Esta clase contiene unos componentes de Swing; como lo son dos botones y un label.
- *
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  */
 public class vtFinal extends JFrame implements ActionListener
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	
 	private BufferedImage image;
 	private JPanel contentPane;
 	private clsUsuario usuario;
@@ -36,6 +41,7 @@ public class vtFinal extends JFrame implements ActionListener
 		try {                
 	         image = ImageIO.read(new File(".\\src\\Imagenes\\E.jpg"));
 	      } catch (IOException ex) {
+	    	  logger.log(Level.WARNING, "Fondoa kargatzean arazoak");
 	           
 	      }
 		

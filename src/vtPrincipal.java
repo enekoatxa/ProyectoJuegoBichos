@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,9 +24,15 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
+ * @author ALUMNO
+ *
+ */
 public class vtPrincipal extends JFrame implements ActionListener
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	
 	private JPanel contentPane;
 	private vtCrear vtCrear;
 	private vtEntrar vtEntrar;
@@ -47,7 +56,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 		 try {                
 	          image = ImageIO.read(new File(".\\src\\Imagenes\\E.jpg"));
 	       } catch (IOException ex) {
-	            
+	    	   logger.log( Level.WARNING, "Fondoaren kargan arazoak");
 	       }
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,7 +134,7 @@ case COMMAND_BUTTON2:
 				vtp=new vtMejoresPuntuaciones();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				logger.log( Level.WARNING, e1.getMessage());
 			}
 			vtp.setVisible(true);
 			

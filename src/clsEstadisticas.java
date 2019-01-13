@@ -1,5 +1,9 @@
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
@@ -16,7 +20,8 @@ public class clsEstadisticas extends JFrame
 {
 	 static String applicationTitle;
 	 String chartTitle ;
-	 
+	 private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+		
 	public clsEstadisticas(  ) {
 		
 		
@@ -50,7 +55,7 @@ public class clsEstadisticas extends JFrame
 				usuariosConPuntuaciones = clsBD.leerPuntuaciones();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.log(Level.WARNING,"Datu basetik irakurtzean arazoak.");
 			}
 		    int[]array=new int[usuariosConPuntuaciones.size()];
 		    ArrayList puntuaciones = new ArrayList<>();
