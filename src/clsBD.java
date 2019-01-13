@@ -6,7 +6,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-
+/**
+ * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+ * Esta es la clase que se encarga de gestionar la base de datos. Para hacer uso de una base de datos hemos tenido que
+ * añadir unas librerias de sqlite jsbc que nos permite guardar la informacion de todos los usuarios con todos las puntuaciones 
+ * que han realizado en diferentes momentos.
+ */
 public class clsBD {
 
 	private static Connection connection;
@@ -25,13 +30,18 @@ public class clsBD {
 	}
 	
 
-	
+	/**
+	 * Se escribe la informacion de entrada del Usuario : el nickName y el password
+	 */
 	public static void escribirUsuario(clsUsuario usuario) throws SQLException
 	{
 		String nombre = usuario.getUsuario();
 		String contrasenya = usuario.getContrasenya();
 		statement.executeUpdate("insert into usuarios values ('" + nombre+"', '"+ contrasenya+"');");
 	}
+	/**
+	 * Metodo que nos permita la lectura de datos desde nuestra base de datos:
+	 */
 	
 	public static ArrayList <String> leerNombresUsuario() throws SQLException
 	{
@@ -69,7 +79,14 @@ public class clsBD {
 		statement.executeUpdate("insert into puntuaciones values ('"+ nomUsuario + "', '" + puntuacion + "');");
 	}
 	
-		
+	/**
+	 *
+	 * * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+	 * Este metodo es necesario para poder luego sacar la informacion de los usuarios con sus puntuaciones en la clase 
+	 * clsMejoresPuntuaciones
+	 * Guardara en un arraylist de tipo clsUsuario el nombre de usuario de este y un arraylist de todas lasç
+	 * puntuaciones que haya podido hacer.
+	 */
 	public static ArrayList<clsUsuario> leerPuntuaciones() throws SQLException
 	{
 		ArrayList<clsUsuario> usuariosConPuntuaciones = new ArrayList<clsUsuario>();
@@ -102,6 +119,13 @@ public class clsBD {
 		
 		return usuariosConPuntuaciones;
 	}
+	
+
+	/**
+	 *
+	 * * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+	 * Metodo para terminar conexion de la Base de datos
+	 */
 	
 	public static void finConexion() {
 		try {
