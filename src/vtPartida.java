@@ -39,16 +39,7 @@ import javax.swing.JButton;
  */
 public class vtPartida extends JFrame
 {
-	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
-	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
-	static {
-	 try {
-	 logger.addHandler( new FileHandler(
-	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
-	 } catch (SecurityException | IOException e) {
-	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
-	 }
-	}
+	private static Logger logger = Logger.getLogger( clsMain.class.getName() );
 	private static final long serialVersionUID = 1L;
 	motorPartida motor;
 	ArrayList<clsEnemigoJuego>enemigos = new ArrayList<clsEnemigoJuego>();

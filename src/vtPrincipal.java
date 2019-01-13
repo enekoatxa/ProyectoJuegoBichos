@@ -32,15 +32,7 @@ import javax.swing.border.EmptyBorder;
 public class vtPrincipal extends JFrame implements ActionListener
 {
 	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
-	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
-	static {
-	 try {
-	 logger.addHandler( new FileHandler(
-	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
-	 } catch (SecurityException | IOException e) {
-	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
-	 }
-	}
+	
 	private JPanel contentPane;
 	private vtCrear vtCrear;
 	private vtEntrar vtEntrar;
@@ -130,7 +122,7 @@ public class vtPrincipal extends JFrame implements ActionListener
 	
 			break;
 		case COMMAND_BUTTON0:
-			logger.log( Level.WARNING, "Fondoaren kargan arazoak");
+			
 			vtEntrar=new vtEntrar();
 			vtEntrar.setVisible(true);
 			this.dispose();

@@ -28,15 +28,7 @@ import java.util.logging.Logger;
 public class lblBonus extends JLabel //Bonus Puntuacion
 {
 	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
-	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
-	static {
-	 try {
-	 logger.addHandler( new FileHandler(
-	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
-	 } catch (SecurityException | IOException e) {
-	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
-	 }
-	}
+
 	private static final long serialVersionUID = 1L;
 	public static final int BONUS_TAMANYO = 50; 
 	public static final int RADIO_ESFERA_BONUS = 23; 
