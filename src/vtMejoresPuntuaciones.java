@@ -23,7 +23,12 @@ import javax.swing.JScrollPane;
 import com.sun.prism.paint.Color;
 
 
-
+/**
+ * Esta es una clase que extiende de JFrame por lo cual hace de ventana que nos mostrara las mejores puntuaciones
+ * que han obtenido los diferentes usuarios en el juego. El objetivo es mostrar las mejores puntuaciones de cada usuario. Ordenados dde mayor 
+ * a menor. Tambien existe la posibilidad de acceder mediante el boton estadisticas a la clase clsEstadisticas mediante el cual podremos
+ * ver esta informacion representada en un grafico de barra (Usuario -MejorPuntuacion).
+ */
 public class vtMejoresPuntuaciones extends JFrame 
 {
 
@@ -143,7 +148,9 @@ public class vtMejoresPuntuaciones extends JFrame
 				dispose ();
 			}
 	});
-		
+		/**
+		 * Boton para poder acceder a las estadisticas de los diferentes usuarios. En el action listener pasaremos la clase clsEstadisticas
+		 */
 		JButton btnNewButton2 = new JButton("Estadistikak");
 		btnNewButton2.setBounds(320, 10, 110, 20);
 		contentPane.add(btnNewButton2);
