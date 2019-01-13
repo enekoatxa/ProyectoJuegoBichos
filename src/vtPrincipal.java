@@ -126,13 +126,12 @@ public class vtPrincipal extends JFrame implements ActionListener
 	
 			break;
 		case COMMAND_BUTTON0:
-			logger.log( Level.WARNING, "Fondoaren kargan arazoak");
 			vtEntrar=new vtEntrar();
 			vtEntrar.setVisible(true);
 			this.dispose();
 			break;
 			
-case COMMAND_BUTTON2:
+		case COMMAND_BUTTON2:
 			
 			try {
 				vtp=new vtMejoresPuntuaciones();
