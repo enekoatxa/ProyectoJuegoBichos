@@ -18,6 +18,8 @@ public class clsMain
 				public void run() {
 					try {
 						
+						
+						
 						vtPrincipal frame = new vtPrincipal(null);
 						frame.setVisible(true);
 						

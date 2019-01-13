@@ -2,12 +2,26 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class lblBicho extends JLabel
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
+	static {
+	 try {
+	 logger.addHandler( new FileHandler(
+	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
+	 } catch (SecurityException | IOException e) {
+	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
+	 }
+	}
 	public static final int BICHO_TAMANYO = 90; 
 	public static final int RADIO_ESFERA_BICHO=30;
 	private final int radius=90;
@@ -26,8 +40,7 @@ public class lblBicho extends JLabel
 			
 			
 		} catch (Exception e) {
-			System.err.println( "Error en carga de recurso: bicho.png no encontrado" );
-			e.printStackTrace();
+			logger.log(Level.WARNING,"Mantangorriaren argazkia kargatzean arazoak.");
 		}
 		setBounds( 0, 0, BICHO_TAMANYO, BICHO_TAMANYO );
 	}

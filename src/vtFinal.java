@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -22,6 +25,16 @@ import javax.swing.border.EmptyBorder;
  */
 public class vtFinal extends JFrame implements ActionListener
 {
+	private static Logger logger = Logger.getLogger( vtFinal.class.getName() );
+	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
+	static {
+	 try {
+	 logger.addHandler( new FileHandler(
+	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
+	 } catch (SecurityException | IOException e) {
+	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
+	 }
+	}
 	private BufferedImage image;
 	private JPanel contentPane;
 	private clsUsuario usuario;
@@ -36,6 +49,7 @@ public class vtFinal extends JFrame implements ActionListener
 		try {                
 	         image = ImageIO.read(new File(".\\src\\Imagenes\\E.jpg"));
 	      } catch (IOException ex) {
+	    	  logger.log(Level.WARNING, "Fondoa kargatzean arazoak");
 	           
 	      }
 		

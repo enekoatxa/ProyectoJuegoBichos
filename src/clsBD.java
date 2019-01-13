@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -5,10 +6,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class clsBD {
-
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
+	static {
+	 try {
+	 logger.addHandler( new FileHandler(
+	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
+	 } catch (SecurityException | IOException e) {
+	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
+	 }
+	}
 	private static Connection connection;
 	private static Statement statement;
 	public static void conexion() 
@@ -20,7 +33,7 @@ public class clsBD {
 			statement.executeUpdate("create table if not exists puntuaciones (nombre string, puntuacion int(6))");
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING,"Datu basea sortzean arazoak");
 		}
 	}
 	

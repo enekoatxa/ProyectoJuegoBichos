@@ -1,7 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -21,6 +25,16 @@ import javax.swing.JButton;
  */
 public class vtCrear extends JFrame implements ActionListener
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
+	static {
+	 try {
+	 logger.addHandler( new FileHandler(
+	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
+	 } catch (SecurityException | IOException e) {
+	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
+	 }
+	}
 	private JTextField textField;
 	private JPasswordField textField_1;
 	private JPasswordField textField_2;
@@ -176,7 +190,7 @@ public class vtCrear extends JFrame implements ActionListener
 				usuarios=clsBD.leerUsuarios();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				logger.log(Level.WARNING,"Datu basea irakurtzean arazoak.");
 			}
 			if(usuarios.contains(nuevo))
 			{
@@ -187,7 +201,7 @@ public class vtCrear extends JFrame implements ActionListener
 				try {
 					clsBD.escribirUsuario(nuevo);
 				} catch (SQLException e) {
-					e.printStackTrace();
+					logger.log(Level.WARNING,"Datu basean idaztean arazoak.");
 				}
 				JOptionPane.showMessageDialog(this, "Erabiltzailea datu basean sartu da");
 				this.dispose();

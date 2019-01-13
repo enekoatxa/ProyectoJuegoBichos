@@ -2,7 +2,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,6 +23,16 @@ import javax.swing.JLabel;
  */
 public class lblEnemigo extends JLabel
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
+	static {
+	 try {
+	 logger.addHandler( new FileHandler(
+	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
+	 } catch (SecurityException | IOException e) {
+	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
+	 }
+	}
 	private static final long serialVersionUID = 1L;
 	public static final int ENEMIGO_TAMANYO = 100; 
 	public static final int ENEMIGO_RADIO= 15;
@@ -49,7 +63,7 @@ public class lblEnemigo extends JLabel
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error: label de enemigo no encontrado");
+			logger.log(Level.WARNING,"Aurkakoen argazkia kargatzean arazoak.");
 		}
 		this.setBounds(0, 0, ENEMIGO_TAMANYO, ENEMIGO_TAMANYO);
 	}

@@ -1,10 +1,14 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Properties;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -26,6 +30,16 @@ import javax.swing.JButton;
  */
 public class vtEntrar extends JFrame implements ActionListener
 {
+	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
+	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
+	static {
+	 try {
+	 logger.addHandler( new FileHandler(
+	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
+	 } catch (SecurityException | IOException e) {
+	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
+	 }
+	}
 	private JTextField textField;
 	private JPasswordField textField_1;
 	private JButton btnPassword;
@@ -186,7 +200,7 @@ public class vtEntrar extends JFrame implements ActionListener
 		try {
 			props.storeToXML( new PrintStream( "Properties" ), "Propiedades de Configuracion" );
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING,"Properties-ak gordetzean arazoak.");
 		}
 	}
 	
