@@ -24,7 +24,11 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
+ * @author ALUMNO
+ *
+ */
 public class vtPrincipal extends JFrame implements ActionListener
 {
 	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );

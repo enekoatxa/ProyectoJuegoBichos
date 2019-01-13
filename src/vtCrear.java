@@ -22,6 +22,7 @@ import javax.swing.JButton;
  * Esta clase contiene varios atributos que son componentes de Swing; como textField-s o botones.
  * Por otro lado contiene dos atributos que valen para que el ActionListener pueda distinguir entre componentes.
  * También cuenta con un booleano que sirve para enseñar o ocultar la contraseña.
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  */
 public class vtCrear extends JFrame implements ActionListener
 {

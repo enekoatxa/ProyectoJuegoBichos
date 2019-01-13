@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
  * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
  * Clase para la ventana que sirve para enseñarnos la puntuación cuando hemos acabado la partida, extiende de JFrame y implementa ActionListener. Nos da la opción de reintentar o salir.
  * Esta clase contiene unos componentes de Swing; como lo son dos botones y un label.
- *
+ * Logger logger: Sirve para enseñar en consola y guardar en un fichero cierta información de la ejecución(p.e excepciones).
  */
 public class vtFinal extends JFrame implements ActionListener
 {
