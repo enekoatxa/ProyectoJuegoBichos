@@ -28,6 +28,7 @@ public class vtMejoresPuntuaciones extends JFrame
 {
 
 	private JPanel contentPane;
+	private clsEstadisticas estadistica;
 
 	
 	public vtMejoresPuntuaciones() throws SQLException {
@@ -47,45 +48,69 @@ public class vtMejoresPuntuaciones extends JFrame
 		
 		DefaultListModel modelo = new DefaultListModel();
 		
-		//datu hauek gero datu basetik atera eta izen berdina dakan erabiltzaileko puntuazio altuena bakrrik erakutsi
-		//+ ordenatu haundienetik txikienera
-		
-		
 		ArrayList usuariosConPuntuaciones = new ArrayList<clsUsuario>();
 		usuariosConPuntuaciones = clsBD.leerPuntuaciones();
-		
-	//HACER ARRAYLIST DE INTS CON TDOS LOS MEJORES NUMEROS
-		
+	    int[]array=new int[usuariosConPuntuaciones.size()];
+	    ArrayList puntuaciones = new ArrayList<>();
+	   
+	    
 		for (int i = 0; i < usuariosConPuntuaciones.size(); ++i) 
 		{
-			ArrayList puntuaciones = new ArrayList<>();
 			puntuaciones= ((clsUsuario) usuariosConPuntuaciones.get(i)).getPuntuaciones();
 			int puntuacionMasAlta=0;
 			int aux=0;
+			
 			for (int x = 0; x < puntuaciones.size(); ++x) 
 			{
-				aux=(int) puntuaciones.get(x);
-				
+			aux=(int) puntuaciones.get(x);
 			if(aux>puntuacionMasAlta)
 			{
-				puntuacionMasAlta= (int) puntuaciones.get(x);
+			puntuacionMasAlta =  (int) puntuaciones.get(x);
 			}
 			}
-			modelo.addElement(((clsUsuario) usuariosConPuntuaciones.get(i)).getUsuario().toUpperCase(getLocale()) + 		
-					"                                              "+
-					puntuacionMasAlta);
+			
+			array [i]= puntuacionMasAlta;
+			
+		}
+		for (int x = 0; x < array.length; x++) {
+	        for (int i = 0; i < array.length-x-1; i++) {
+	            if(array[i] < array[i+1]){
+	                int tmp = array[i+1];
+	                array[i+1] = array[i];
+	                array[i] = tmp;
+	            }
+	        }
+	    }
+		
+		
+		
+		
+		for(int i=0;i<(array.length);i++)
+		{
+			
+			for (int x = 0; x < usuariosConPuntuaciones.size(); ++x) 
+			{
+				puntuaciones= ((clsUsuario) usuariosConPuntuaciones.get(x)).getPuntuaciones();
+				int aux=0;
+				
+				for (int y = 0; y< puntuaciones.size(); ++y) 
+				{
+					aux=(int) puntuaciones.get(y);
+					if(aux==array[i])
+					{
+					modelo.addElement(((clsUsuario) usuariosConPuntuaciones.get(x)).getUsuario().toUpperCase(getLocale()) + 		
+						"                                 "+						array[i]);
+				
+					
+					}
+					}
+				}
 		}
 		
-	
-		
-		list.setFont(new Font("Times New Roman",Font.BOLD,15));
-	
-		
-
+		list.setFont(new Font("Times New Roman",Font.BOLD,15));		
 		list.setModel(modelo);
 		contentPane.add(list);
 		
-
 		JLabel imag = new JLabel();
 		imag.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		imag.setBounds(5, 48, 20, 20);
@@ -118,8 +143,20 @@ public class vtMejoresPuntuaciones extends JFrame
 				dispose ();
 			}
 	});
+		
 		JButton btnNewButton2 = new JButton("Estadistikak");
 		btnNewButton2.setBounds(320, 10, 110, 20);
 		contentPane.add(btnNewButton2);
+		
+		btnNewButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				estadistica=new clsEstadisticas();
+				estadistica.setVisible(true);
+				
+				setVisible (false);
+				dispose ();
+			}
+	});
 	}
 }
