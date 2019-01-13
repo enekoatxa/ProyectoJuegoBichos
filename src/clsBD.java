@@ -36,6 +36,8 @@ public class clsBD {
 
 	/**
 	 * Se escribe la informacion de entrada del Usuario : el nickName y el password
+	 * @param usuario usuario que se escribe en la base de datos
+	 * @throws SQLException
 	 */
 	public static void escribirUsuario(clsUsuario usuario) throws SQLException
 	{
@@ -43,10 +45,12 @@ public class clsBD {
 		String contrasenya = usuario.getContrasenya();
 		statement.executeUpdate("insert into usuarios values ('" + nombre+"', '"+ contrasenya+"');");
 	}
-	/**
-	 * Metodo que nos permita la lectura de datos desde nuestra base de datos:
-	 */
 	
+	/**
+	 *  Metodo que nos permita la lectura de datos desde nuestra base de datos
+	 * @return devuelve un arraylist de strings con los nombres
+	 * @throws SQLException Excepcion de SQL
+	 */
 	public static ArrayList <String> leerNombresUsuario() throws SQLException
 	{
 		ArrayList <String> nombres = new ArrayList<String>();
@@ -84,12 +88,13 @@ public class clsBD {
 	}
 	
 	/**
-	 *
-	 * * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+	 * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
 	 * Este metodo es necesario para poder luego sacar la informacion de los usuarios con sus puntuaciones en la clase 
 	 * clsMejoresPuntuaciones
 	 * Guardara en un arraylist de tipo clsUsuario el nombre de usuario de este y un arraylist de todas lasç
 	 * puntuaciones que haya podido hacer.
+	 * @return Devuelve un arraylist de usuarios con sus puntuaciones
+	 * @throws SQLException Excepcion de lectura de BD
 	 */
 	public static ArrayList<clsUsuario> leerPuntuaciones() throws SQLException
 	{

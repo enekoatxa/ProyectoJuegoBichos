@@ -125,7 +125,6 @@ public class vtEntrar extends JFrame implements ActionListener
 		case PASAHITZAIKUSI:
 			if(pasahitza)
 			{
-				logger.log(Level.WARNING,"e");
 				textField_1.setEchoChar('*'); 
 				pasahitza=false;
 				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));

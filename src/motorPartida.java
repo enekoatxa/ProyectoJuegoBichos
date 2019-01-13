@@ -27,7 +27,7 @@ public class motorPartida
 	
 	/**
 	 * Constructor del motor, que recoge el panel en el cual se está llevando a cabo la parte gráfica del juego.
-	 * @param panel
+	 * @param panel Panel en el cual se lleva a cabo la parte gráfica.
 	 */
 	public motorPartida(JPanel panel)
 	{
@@ -44,7 +44,7 @@ public class motorPartida
 
 	/**
 	 * Este método crea un clsEnemigoJuego, con su parte de atributos, y también la parte gráfica, la cual la añade al panel. 
-	 * @return
+	 * @return Devuelve el propio enemigo
 	 */
 	public clsEnemigoJuego creaEnemigo()
 	{
@@ -56,7 +56,7 @@ public class motorPartida
 	
 	/**
 	 * Este método crea un clsBichoJuego, con su parte de atributos, y también la parte gráfica, la cual la añade al panel. 
-	 * @return
+	 * @return Devuelve el propio bicho
 	 */
 	public clsBichoJuego crearBicho()
 	{
@@ -98,7 +98,7 @@ public class motorPartida
 	
 	/**
 	 * Este método crea un clsBonusJuego, con su parte de atributos, y también la parte gráfica, la cual la añade al panel. 
-	 * @return
+	 * @return Devuelve el propio bonus
 	 */
 	public clsBonusJuego creaBonus()
 	{
@@ -193,7 +193,7 @@ public class motorPartida
 
 	/**
 	 * Método que borra un bonus de la pantalla.
-	 * @param e El bonus borrado.
+	 * @param b El bonus borrado.
 	 */
 	public void borraBonusPantalla(clsBonusJuego b)
 	{

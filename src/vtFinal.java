@@ -32,8 +32,8 @@ public class vtFinal extends JFrame implements ActionListener
 	private clsUsuario usuario;
 	/**
 	 * Constructor con dos parámetros (usuario que ha jugado, la puntuación que ha logrado) de la ventana.
-	 * @param usuario
-	 * @param puntuacion
+	 * @param usuario Usuario actual
+	 * @param puntuacion Puntuacion conseguida en la partida
 	 */
 	public vtFinal(clsUsuario usuario, int puntuacion)
 	{

@@ -53,7 +53,7 @@ public class lblBonus extends JLabel //Bonus Puntuacion
 	}
 	/**
 	 * Método para ir girando el bonus.
-	 * @param gradosGiro
+	 * @param gradosGiro El giro 
 	 */
 	public void addGiro( double gradosGiro ) {
 		miGiro -= gradosGiro/180*Math.PI;

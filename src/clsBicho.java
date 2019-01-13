@@ -22,7 +22,9 @@ public class clsBicho
 	
 	
 	/**
-	 * Constructor de clsBicho.
+	 * Constructor de clsBicho
+	 * @param miPosX Posicion X del bicho
+	 * @param miPosY Posicion Y del bicho
 	 */
 	public clsBicho(double miPosX, double miPosY) {
 		
@@ -76,7 +78,9 @@ public class clsBicho
 	
 	/**
 	 * Metodo para calcular mediante dos vectores de X e Y la posicion a la cual mirara el bicho manejado por el usuario
-	 * mediante los dos vectores se debe obtener la orientacion de este en grados. 
+	 * mediante los dos vectores se debe obtener la orientacion de este en grados.
+	 * @param XVector Valor X del vector necesario
+	 * @param YVector Valor Y del vector necesario
 	 */
 	public void calcularGradosDireccion(double XVector, double YVector) 
 	{

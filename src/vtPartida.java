@@ -63,7 +63,7 @@ public class vtPartida extends JFrame
 	private int tiempogen=1000;
 	/**
 	 * Constructor de la clase con el usuario que juega de parámetro. Crea una ventana con el principio del juego(un fondo y un bicho). 
-	 * @param usuario
+	 * @param usuario Usuario actual 
 	 */
 	public vtPartida(clsUsuario usuario)
 	{
@@ -316,7 +316,7 @@ public class vtPartida extends JFrame
 	}
 	/**
 	 * Método para boorar un bonus de la pantalla
-	 * @param e Bonus a borrar
+	 * @param b Bonus a borrar
 	 */
 	public void borraBonus(clsBonusJuego b)
 	{

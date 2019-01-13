@@ -2,13 +2,13 @@ public class clsBichoJuego extends clsBicho {
 	
 	private lblBicho miGrafico;  
 
+
 	/**
-	 * 
-	 * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
+	 *  * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
 	 * Es la clase que junta la clase clsBicho y su label. Hereda de clsBicho y así tiene sus atributos, y también contiene un label, que es el gráfico.
-	 *
+	 * @param miPosX Posicion X del bicho.
+	 * @param miPosY Posicion Y del bicho.
 	 */
-	
 public clsBichoJuego(double miPosX, double miPosY)
 {
 	super(miPosX, miPosY);
@@ -47,9 +47,12 @@ public void add(clsBichoJuego crearBicho) {
 	// TODO Auto-generated method stub
 	
 }
+
 /**
  * Metodo que nos permitira el movimiento de nuestro bicho en la ventana vtPartida mediante sus coordenadas
  * de posiciones X e Y.
+ * @param posXActual Posicion X actual del bicho
+ * @param posYActual Posicion Y actual del bicho
  */
 public void mueve(double posXActual, double posYActual) 
 {

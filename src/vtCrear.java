@@ -104,19 +104,6 @@ public class vtCrear extends JFrame implements ActionListener
 		getContentPane().add(btnPassword1);
 		btnPassword1.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
 		
-//		btnPassword.setIcon(new ImageIcon("img/E.png"));
-//		btnPassword.setIcon(new ImageIcon(".\\src\\Begia.png"));
-//		try
-//		{
-//		btnPassword.setIcon( new ImageIcon( vtCrear.class.getResource( "Imagenes/Begia.png" ).toURI().toURL() ) );
-//		}
-//		catch(Exception e)
-//		{
-//			System.out.println("Error: label de enemigo no encontrado");
-//		}
-		
-	
-		
 	}
 	/**
 	 * Método para gestionar las pulsaciones a los botones de la ventana mediante el Listener.
