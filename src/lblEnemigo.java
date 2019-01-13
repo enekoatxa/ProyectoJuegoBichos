@@ -24,15 +24,6 @@ import javax.swing.JLabel;
 public class lblEnemigo extends JLabel
 {
 	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
-	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
-	static {
-	 try {
-	 logger.addHandler( new FileHandler(
-	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
-	 } catch (SecurityException | IOException e) {
-	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
-	 }
-	}
 	private static final long serialVersionUID = 1L;
 	public static final int ENEMIGO_TAMANYO = 100; 
 	public static final int ENEMIGO_RADIO= 15;

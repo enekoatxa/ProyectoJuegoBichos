@@ -30,16 +30,7 @@ import javax.swing.JButton;
  */
 public class vtEntrar extends JFrame implements ActionListener
 {
-	private static Logger logger = Logger.getLogger( vtPartida.class.getName() );
-	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
-	static {
-	 try {
-	 logger.addHandler( new FileHandler(
-	 "Loggerrak.log.xml", ANYADIR_A_FIC_LOG ));
-	 } catch (SecurityException | IOException e) {
-	 logger.log( Level.SEVERE, "Log fitxeroaren sorkuntzan arazoak" );
-	 }
-	}
+	private static Logger logger = Logger.getLogger( clsMain.class.getName() );
 	private JTextField textField;
 	private JPasswordField textField_1;
 	private JButton btnPassword;
@@ -134,6 +125,7 @@ public class vtEntrar extends JFrame implements ActionListener
 		case PASAHITZAIKUSI:
 			if(pasahitza)
 			{
+				logger.log(Level.WARNING,"e");
 				textField_1.setEchoChar('*'); 
 				pasahitza=false;
 				btnPassword.setIcon(new ImageIcon(vtCrear.class.getResource("/Imagenes/Begia.png")));
