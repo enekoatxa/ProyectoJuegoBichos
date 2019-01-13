@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Test;
 import org.junit.Before;
@@ -73,6 +76,27 @@ public class clsTest
 		enemigo.setPosX(500);
 		enemigo.setPosY(500);
 		assertEquals(noHayChoque, motor.choqueConEnemigo(enemigo));
+	}
+	
+	@Test
+	public void testBD()
+	{
+		ArrayList<String>listaPrueba = new ArrayList<String>();
+		clsBD.conexion();
+		clsUsuario usuario = new clsUsuario("Prueba", "Prueba");
+		try {
+			clsBD.escribirUsuario(usuario);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			listaPrueba=clsBD.leerNombresUsuario();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(false, listaPrueba.size()==0);
 	}
 	
 	@Test

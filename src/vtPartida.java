@@ -21,6 +21,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 
 
+
 /**
  * 
  * @author Mikel Martinez, Eneko Atxa y Imanol Aizpuru
@@ -66,6 +67,7 @@ public class vtPartida extends JFrame
 	 */
 	public vtPartida(clsUsuario usuario)
 	{
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.usuario=usuario;
 		puntuacion=0;
 	
@@ -115,6 +117,10 @@ public class vtPartida extends JFrame
 		this.setCursor(this.getToolkit().createCustomCursor(
 	            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
 	            "null"));
+		
+		
+	
+	
 	}
 	
 	/**
